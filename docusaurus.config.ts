@@ -5,8 +5,8 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'Webshote Archive Docs',
-  tagline: 'How to use the Webshote Archive',
+  title: 'Webshot Archive Docs',
+  tagline: 'How to use the Webshot Archive',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
