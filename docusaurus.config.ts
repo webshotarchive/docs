@@ -74,6 +74,8 @@ const config: Config = {
         src: 'img/logo.svg',
       },
       items: [
+
+        {to: '/docs/api', label: 'API', position: 'left'},
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
