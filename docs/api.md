@@ -4,7 +4,7 @@ sidebar_position: 1
 
 ## Github Actions
 
-### Uplaod Images
+### Upload Images
 
 Upload images to the Webshot Archive using `toshimoto821/toshi-action` available at [github.com/toshimoto821/toshi-action](https://github.com/toshimoto821/toshi-action) or the Github marketplace.
 .
@@ -47,7 +47,7 @@ Upload images to the Webshot Archive using `toshimoto821/toshi-action` available
     clientSecret: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_SECRET }}
 ```
 
-## Error Handling
+#### Error Handling
 
 Errors will be returned as a string in the `error` field of the response.
 
