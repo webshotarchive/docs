@@ -2,6 +2,67 @@
 sidebar_position: 1
 ---
 
+## API Endpoints
+
+### Update Images
+
+Provides a way to update image metadata. Useful for adding/updating tags.
+
+URL: `/api/image/update/${projectId}/update-images`
+
+#### Request
+
+body:
+
+```javascript
+const headers = {
+  "x-client-id": "<client-id>",
+  "x-client-secret": "<client-secret>",
+};
+const body = {
+  find: {
+    commitSha: "f1db95ff8605a53fd28ae011f8cbe8ad876dc5e8",
+  },
+  update: {
+    tags: ["release", "production"],
+    // "path": "new/path/to/image.png",
+    // "originalName": "renamed-image.png",
+    // "commitSha": "updated-sha-value",
+    // "branchName": "feature/new-branch",
+    // "mergedBranch": "main",
+    // "type": "merge"
+  },
+};
+await axios.post(
+  `https://api.webshotarchive.com/api/image/update/${projectId}/update-images`,
+  body,
+  {
+    headers,
+  }
+);
+```
+
+#### Path Parameters
+
+| Parameter | Type   | Required | Description    |
+| --------- | ------ | -------- | -------------- |
+| projectId | string | Yes      | The project ID |
+
+#### Body Parameters
+
+| Parameter           | Type     | Required | Description              |
+| ------------------- | -------- | -------- | ------------------------ |
+| find                | object   | Yes      | The object to find       |
+| find.commitSha      | string   | No       | The sha to match on      |
+| update              | object   | Yes      | The object to update     |
+| update.tags         | string[] | Yes      | The tags to set          |
+| update.path         | string   | No       | The path to set          |
+| update.originalName | string   | No       | The original name to set |
+| update.commitSha    | string   | No       | The commit sha to set    |
+| update.branchName   | string   | No       | The branch name to set   |
+| update.mergedBranch | string   | No       | The merged branch to set |
+| update.type         | string   | No       | The type to set          |
+
 ## Github Actions
 
 ### Upload Images
