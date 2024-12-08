@@ -72,19 +72,28 @@ Upload images to the Webshot Archive using `toshimoto821/toshi-action` available
 
 #### Parameters
 
-| Parameter         | Type    | Required | Description                                     |
-| ----------------- | ------- | -------- | ----------------------------------------------- |
-| screenshotsFolder | string  | Yes      | The folder containing the screenshots to upload |
-| commitSha         | string  | Yes      | The commit SHA                                  |
-| compareCommitSha  | string  | No       | The commit SHA of the branch                    |
-| compareBranch     | string  | No       | The branch to compare against                   |
-| branchName        | string  | No       | The branch to upload to                         |
-| mergedBranch      | string  | No       | The branch that was merged                      |
-| comment           | boolean | No       | Whether to comment on the PR                    |
-| type              | string  | No       | Push or merge                                   |
-| tags              | string  | No       | Tags to add to the screenshots                  |
-| clientId          | string  | Yes      | Your client ID                                  |
-| clientSecret      | string  | Yes      | Your client secret                              |
+| Parameter                  | Type    | Required | Default (Pull Request)                      | Default (Push)               | Description                                      |
+| -------------------------- | ------- | -------- | ------------------------------------------- | ---------------------------- | ------------------------------------------------ |
+| screenshotsFolder          | string  | Yes      | -                                           | -                            | The folder containing the screenshots to upload. |
+| clientId                   | string  | Yes      | -                                           | -                            | Your client ID.                                  |
+| clientSecret               | string  | Yes      | -                                           | -                            | Your client secret.                              |
+| projectId                  | string  | Yes      | -                                           | -                            | The Webshot Archive projectId.                   |
+| commitSha                  | string  | No       | `${{github.event.pull_request.head.sha }}`  | `${{ github.event.after }}`  | The commit SHA represented in the screenshot     |
+| compareCommitSha           | string  | No       | `${{ github.event.pull_request.base.sha }}` | `${{ github.event.before }}` | The commit SHA to compare with.                  |
+| branchName                 | string  | No       | `${{ github.head_ref }}`                    | `${GITHUB_REF##*/}`          | The branch associated with the screenshot.       |
+| mergedBranch               | string  | No       | -                                           | \* see below                 | The branch that was merged.                      |
+| comment                    | boolean | No       | true                                        | false                        | Whether to comment on the PR.                    |
+| type                       | string  | No       | "push"                                      | "merge"                      | Push or merge.                                   |
+| tags                       | string  | No       | \* see below                                | \* see below                 | Tags to add to the screenshots.                  |
+| compareBranch (deprecated) | string  | No       | -                                           | -                            | The branch to compare against.                   |
+
+##### Notes
+
+- `compareBranch`: Is deprecated and will be removed in a future release.
+- `mergedBranch`: The merged branch logic is handled by the Webshot Archive API [here](https://github.com/toshimoto821/webshotarchive/blob/main/src/defaultFields.js#L31-L95). The point is to have the merged branch be the branch that was merged into.
+- `tags`: The tags logic is handled by the Webshot Archive API [here](https://github.com/toshimoto821/webshotarchive/blob/main/src/main.js#L192-L205). Key points:
+  - images ending in (failed).png get `failed` tag.
+  - images with title tags-[tag1, tag2, tag3] get the tags `tag1`, `tag2`, `tag3`.
 
 #### Example Implementation
 
@@ -95,14 +104,6 @@ Upload images to the Webshot Archive using `toshimoto821/toshi-action` available
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:
     screenshotsFolder: dist/cypress
-    commitSha: ${{ github.event.pull_request.head.sha }}
-    compareCommitSha: ${{ github.event.pull_request.base.sha }} #the sha the pr is going into
-    compareBranch: ${{ github.event.pull_request.base.ref }}
-    branchName: ${{ github.event.pull_request.head.ref }}
-    mergedBranch: ${{ github.event.pull_request.base.ref }}
-    type: "push"
-    comment: true
-    tags: pr
     projectId: ${{secrets.WEBSHOT_ARCHIVE_PROJECT_ID}}
     clientId: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_ID }}
     clientSecret: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_SECRET }}
