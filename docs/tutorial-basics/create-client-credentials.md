@@ -23,7 +23,7 @@ Click the `Add User` button on the [account page](https://www.webshotarchive.com
 
 ### Step 2
 
-Next switch to the `Addd Service Account User (Github Actions)` tab. Click the `Add User` button.
+Next switch to the `Add Service Account User (Github Actions)` tab. Click the `Add User` button.
 ![Add User](/img/screenshots/account-add-user-2.png)
 
 ### Step 3
@@ -38,7 +38,7 @@ Click `Create Credentials` button.
 
 ### Step 5
 
-Save the client secret someone safe. Once you close this dialog, you will not be able to access it again.
+Save the client secret somewhere safe. Once you close this dialog, you will not be able to access it again.
 
 ![Add User](/img/screenshots/account-add-user-5.png)
 

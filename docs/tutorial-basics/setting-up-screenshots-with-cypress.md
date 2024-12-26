@@ -16,7 +16,7 @@ This section of the tutorial will guide you through:
 You can find the Github Action code that run on pull request [here](https://github.com/toshimoto821/webshot-archive-docs/blob/main/.github/workflows/pr.yml) and the Github Action code that run on push to the `main` branch [here](https://github.com/toshimoto821/webshot-archive-docs/blob/main/.github/workflows/main.yml).
 
 :::tip
-For comparision screenshots you will need to have a main branch or base branch with the screenshots already uploaded to the Webshot Archive API. Webshot Archive stores images with their commit hash so if you want to compare screenshots from a PR to the main branch, you will need to have the screenshots from the main branch saved.
+For comparision screenshots you will need to have a main branch or base branch with the screenshots already uploaded to the Webshot Archive API. Webshot Archive stores images with their commit hash so if you want to compare screenshots from a PR to the main branch, you will need to have the screenshots from the main branch saved. Your first PR will not have any screenshots to compare to, thats ok. After you merge your first PR, the main branch screenshots will be uploaded to the Webshot Archive API (using the Github Action below) and you will be able to compare screenshots from future PRs to the main branch.
 :::
 
 ## Cypress Configuration
@@ -84,7 +84,7 @@ The [`start-server-and-test`](https://www.npmjs.com/package/start-server-and-tes
 npm run cypress:e2e
 ```
 
-After running the command, you should see the screenshots in the `dist/cypress` folder. This folder is used in the Github Action to upload the screenshots to the Webshot Archive API.
+After running the command, you should see the screenshots in the `dist/cypress` folder. This folder is used in the Github Action to upload the screenshots to the Webshot Archive API. You should add the `dist` folder to your `.gitignore` file so it is not committed to the repository.
 
 ### Step 6 - Configure & run the Github Actions
 
@@ -199,7 +199,7 @@ jobs:
         run: exit 1
 ```
 
-After the PR is merged, the main branch screenshots will be generated and uploaded to the Webshot Archive API.
+After the PR is merged, the above action should run and the main branch screenshots will be generated and uploaded to the Webshot Archive API.
 
 #### Github Action Inputs
 
