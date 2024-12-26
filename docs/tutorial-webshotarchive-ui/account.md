@@ -3,57 +3,19 @@ sidebar_position: 1
 title: Account
 ---
 
-<!--
-This tutorial will guide you through using the Webshot Archive UI to manage your screenshots.
+# Account
 
-# Manage Docs Versions
+The [account page](https://www.webshotarchive.com/account) is where you can manage your account settings. This includes:
 
-Docusaurus can manage multiple versions of your docs.
+- Managing users
+- Creating API keys for service account users
+- Manage your subscription
 
-## Create a docs version
+![Webshot Archive Account](/img/screenshots/ui-tour-account.png)
 
-Release a version 1.0 of your project:
+A Subscription is required to use the Webshot Archive and the basic plan is only $5 per month. This is a great way to get started with the Webshot Archive and see how it can help you capture screenshots of your website and compare them to previous screenshots.
 
-```bash
-npm run docusaurus docs:version 1.0
-```
-
-The `docs` folder is copied into `versioned_docs/version-1.0` and `versions.json` is created.
-
-Your docs now have 2 versions:
-
-- `1.0` at `http://localhost:3000/docs/` for the version 1.0 docs
-- `current` at `http://localhost:3000/docs/next/` for the **upcoming, unreleased docs**
-
-## Add a Version Dropdown
-
-To navigate seamlessly across versions, add a version dropdown.
-
-Modify the `docusaurus.config.js` file:
-
-```js title="docusaurus.config.js"
-export default {
-  themeConfig: {
-    navbar: {
-      items: [
-        // highlight-start
-        {
-          type: "docsVersionDropdown",
-        },
-        // highlight-end
-      ],
-    },
-  },
-};
-```
-
-The docs version dropdown appears in your navbar:
-
-![Docs Version Dropdown](./img/docsVersionDropdown.png)
-
-## Update an existing version
-
-It is possible to edit versioned docs in their respective folder:
-
-- `versioned_docs/version-1.0/hello.md` updates `http://localhost:3000/docs/hello`
-- `docs/hello.md` updates `http://localhost:3000/docs/next/hello` -->
+:::info
+Webshot Archive is currently in beta and the pricing is subject to change. I'm a solo developer and I'm trying to make this as affordable as possible for small teams and individuals
+while at the same time making sure I can keep developing and maintaining the Webshot Archive.
+:::

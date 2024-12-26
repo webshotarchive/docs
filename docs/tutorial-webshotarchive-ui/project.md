@@ -3,57 +3,12 @@ sidebar_position: 3
 title: Project
 ---
 
-<!--
-This tutorial will guide you through using the Webshot Archive UI to manage your screenshots.
+# Project Dashboard
 
-# Manage Docs Versions
+![Webshot Archive Project Dashboard](/img/screenshots/ui-tour-project-dashboard.png)
 
-Docusaurus can manage multiple versions of your docs.
+The project dashboard is where you can view all of a projects screenshots. The left menu allows you to view the projects file tree and the right menu allows you to view the projects Git timeline. Using the two sidebars you can navigate the project and view / compare the screenshots across time.
 
-## Create a docs version
-
-Release a version 1.0 of your project:
-
-```bash
-npm run docusaurus docs:version 1.0
-```
-
-The `docs` folder is copied into `versioned_docs/version-1.0` and `versions.json` is created.
-
-Your docs now have 2 versions:
-
-- `1.0` at `http://localhost:3000/docs/` for the version 1.0 docs
-- `current` at `http://localhost:3000/docs/next/` for the **upcoming, unreleased docs**
-
-## Add a Version Dropdown
-
-To navigate seamlessly across versions, add a version dropdown.
-
-Modify the `docusaurus.config.js` file:
-
-```js title="docusaurus.config.js"
-export default {
-  themeConfig: {
-    navbar: {
-      items: [
-        // highlight-start
-        {
-          type: "docsVersionDropdown",
-        },
-        // highlight-end
-      ],
-    },
-  },
-};
-```
-
-The docs version dropdown appears in your navbar:
-
-![Docs Version Dropdown](./img/docsVersionDropdown.png)
-
-## Update an existing version
-
-It is possible to edit versioned docs in their respective folder:
-
-- `versioned_docs/version-1.0/hello.md` updates `http://localhost:3000/docs/hello`
-- `docs/hello.md` updates `http://localhost:3000/docs/next/hello` -->
+:::tip
+Because of the way image comparisons work, you can not compare images of different sizes. This means that if you have an e2e test that may grow or shrink in page size, you wont be able to compare those screenshots. If you would like to prevent the image sizes from changing, cypress and e2e test tools allow you to set a specific width and height on the screenshot as opposed to the full page.
+:::

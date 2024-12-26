@@ -3,56 +3,28 @@ sidebar_position: 2
 title: Project Settings
 ---
 
-<!-- This tutorial will guide you through using the Webshot Archive UI to manage your screenshots.
+# Projects
 
-# Manage Docs Versions
+## Projects List
 
-Docusaurus can manage multiple versions of your docs.
+The [projects list](https://www.webshotarchive.com/projects) page is where you can view all of your projects
 
-## Create a docs version
+![Webshot Archive Projects](/img/screenshots/ui-tour-projects-list.png)
 
-Release a version 1.0 of your project:
+From the projects list page, you can click on project settings link to view the project settings.
 
-```bash
-npm run docusaurus docs:version 1.0
-```
+## Project Settings
 
-The `docs` folder is copied into `versioned_docs/version-1.0` and `versions.json` is created.
+The project settings page is where you can view and manage a specific project's settings. This includes:
 
-Your docs now have 2 versions:
+- Changing the project name
+- Changing the pixelmatch options for the project
+- Managing users for the project
+- Deleting images from old branches
+- Deleting the project itself
 
-- `1.0` at `http://localhost:3000/docs/` for the version 1.0 docs
-- `current` at `http://localhost:3000/docs/next/` for the **upcoming, unreleased docs**
+:::tip
+You can add users to your account on the account page or add the user to a specific project. A user on your account will have access to all projects. A user on a project will only have access to that project.
+:::
 
-## Add a Version Dropdown
-
-To navigate seamlessly across versions, add a version dropdown.
-
-Modify the `docusaurus.config.js` file:
-
-```js title="docusaurus.config.js"
-export default {
-  themeConfig: {
-    navbar: {
-      items: [
-        // highlight-start
-        {
-          type: "docsVersionDropdown",
-        },
-        // highlight-end
-      ],
-    },
-  },
-};
-```
-
-The docs version dropdown appears in your navbar:
-
-![Docs Version Dropdown](./img/docsVersionDropdown.png)
-
-## Update an existing version
-
-It is possible to edit versioned docs in their respective folder:
-
-- `versioned_docs/version-1.0/hello.md` updates `http://localhost:3000/docs/hello`
-- `docs/hello.md` updates `http://localhost:3000/docs/next/hello` -->
+![Webshot Archive Project Settings](/img/screenshots/ui-tour-project-settings.png)
