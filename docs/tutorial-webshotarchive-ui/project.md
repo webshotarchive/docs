@@ -1,8 +1,10 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
+title: Project
 ---
 
-These instructions are the boilerplate instructions for managing docs versions in Docusaurus. Please ignore.
+<!--
+This tutorial will guide you through using the Webshot Archive UI to manage your screenshots.
 
 # Manage Docs Versions
 
@@ -54,4 +56,4 @@ The docs version dropdown appears in your navbar:
 It is possible to edit versioned docs in their respective folder:
 
 - `versioned_docs/version-1.0/hello.md` updates `http://localhost:3000/docs/hello`
-- `docs/hello.md` updates `http://localhost:3000/docs/next/hello`
+- `docs/hello.md` updates `http://localhost:3000/docs/next/hello` -->
