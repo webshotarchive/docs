@@ -98,3 +98,9 @@ npm run cypress:e2e
 :::tip
 The `continue-on-error: true` option is used to allow the Github Action to continue running even if the screenshots fail. This is useful if you want to run the Github Action, upload the screenshots to the Webshot Archive API and comment on the PR with the results.
 :::
+
+### Step 7 - Validate setup on Github PR
+
+Once the action runs, you should see a comment with the new screenshots in the PR as shown below and on [this PR](https://github.com/toshimoto821/webshot-archive-docs/pull/1).
+
+![Github PR Screenshots](/img/screenshots/gha-screenshot-new.png)
