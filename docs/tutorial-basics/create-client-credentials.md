@@ -1,8 +1,16 @@
 ---
 sidebar_position: 1
+title: Github Action Credentials
 ---
 
-# Create Client Credentials
+:::info
+At the end of this tutorial, you will have a working setup for capturing screenshots with Cypress and uploading them to the Webshot Archive API and showing image diffs on a Github PR.
+![Screenshot of the Github Action](/img/screenshots/gha-screenshot-compare.png)
+:::
+
+# Github Action Credentials
+
+This section of the tutorial will guide you through creating a Client ID and Client Secret for the Webshot Archive API.
 
 Credentials to use for Github Actions to upload images and interact with the Webshot Archive API can be created on the [account page](https://www.webshotarchive.com/account) of [webshotarchive.com](https://www.webshotarchive.com).
 

@@ -3,6 +3,6 @@
   "position": 2,
   "link": {
     "type": "generated-index",
-    "description": "This section of the tutorial will guide you through: setting up your Webshot Archive account, setting up cypress.io to capture screenshots, running the cypress.io tests with the Github Action, validating the screenshots on the Github PR, and running the Github Action on push to the `main` branch."
+    "description": "After completing this tutorial, you will have a working setup for capturing screenshots with Cypress and uploading them to the Webshot Archive API. This section of the tutorial will guide you through: setting up your Webshot Archive account, setting up cypress.io to capture screenshots, running the cypress.io tests with the Github Action, validating the screenshots on the Github PR, and running the Github Action on push to the main branch."
   }
 }

@@ -2,6 +2,8 @@
 sidebar_position: 1
 ---
 
+These instructions are the boilerplate instructions for managing docs versions in Docusaurus. Please ignore.
+
 # Manage Docs Versions
 
 Docusaurus can manage multiple versions of your docs.
@@ -34,7 +36,7 @@ export default {
       items: [
         // highlight-start
         {
-          type: 'docsVersionDropdown',
+          type: "docsVersionDropdown",
         },
         // highlight-end
       ],

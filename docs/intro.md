@@ -4,44 +4,28 @@ sidebar_position: 1
 
 # Tutorial Intro
 
-Let's discover **Docusaurus in less than 5 minutes**.
+Let's discover **Webshot Archive**.
 
 ## Getting Started
 
-Get started by **creating a new site**.
+Webshot Archive is a tool for capturing screenshots of your website and comparing them to previous screenshots. It is designed to work with Github Actions to capture screenshots of your website and upload them to the Webshot Archive API. Below is an example of what a comment looks like on a Github PR with the Webshot Archive Github Action.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+![Github PR Screenshots](/img/screenshots/gha-screenshot-compare.png)
+
+It works by capturing screenshots of your website and uploading them to the Webshot Archive API. It uses [pixelmatch](https://github.com/mapbox/pixelmatch) to compare screenshots and generate a diff. It then comments on the PR with the screenshots and a diff of the screenshots. You can also use the Webshot Archive UI to view the screenshots and diffs over time the same way you might view the history of a file in Github.
+
+Get started by [**Signing Up**](https://www.webshotarchive.com/account) and [**Creating a Project**](https://www.webshotarchive.com/projects) on [webshotarchive.com](https://www.webshotarchive.com).
 
 ### What you'll need
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+- some experience with software development
+- a Github account
+- a project repository to capture screenshots of
 
-## Generate a new site
+### What you'll learn
 
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+- how to capture screenshots of your website
+- how to upload screenshots to the Webshot Archive API
+- how to compare screenshots to previous screenshots
+- how to comment on a Github PR with the screenshots and diffs
+- how to view the screenshots and diffs over time in the Webshot Archive UI

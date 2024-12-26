@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Uploading Screenshots from e2e tests
 
-After setting up your API User ([Create Client Credentials](/docs/tutorial-basics/create-client-credentials)), you can capture screenshots with [Cypress](https://cypress.io/), [Playwright](https://playwright.dev/), or other e2e testing tools. The Webshot Archive Github Action will upload the screenshots to the Webshot Archive API and comment on the Pull Request with the results.
+After setting up the API User ([Create Client Credentials](/docs/tutorial-basics/create-client-credentials)), Github Actions can capture screenshots with [Cypress](https://cypress.io/), [Playwright](https://playwright.dev/), or other e2e testing tools. The Webshot Archive Github Action will upload the screenshots to the Webshot Archive API and comment on the Pull Request showing the image and diffs (if any).
 
 This section of the tutorial will guide you through:
 
@@ -16,7 +16,7 @@ This section of the tutorial will guide you through:
 You can find the Github Action code that run on pull request [here](https://github.com/toshimoto821/webshot-archive-docs/blob/main/.github/workflows/pr.yml) and the Github Action code that run on push to the `main` branch [here](https://github.com/toshimoto821/webshot-archive-docs/blob/main/.github/workflows/main.yml).
 
 :::tip
-For comparision screenshots you will need to have a main branch or base branch that has the screenshots. Webshot Archive stores images with their commit hash so if you want to compare screenshots from a PR to the main branch, you will need to have the screenshots from the main branch saved.
+For comparision screenshots you will need to have a main branch or base branch with the screenshots already uploaded to the Webshot Archive API. Webshot Archive stores images with their commit hash so if you want to compare screenshots from a PR to the main branch, you will need to have the screenshots from the main branch saved.
 :::
 
 ## Cypress Configuration
@@ -27,11 +27,15 @@ Skip to [step 6](#step-6---configure--run-the-github-actions) if you are using a
 
 ### Step 1 - Install Cypress
 
+In your project directory, run the following command to install Cypress.
+
 ```bash
 npm install cypress --save-dev
 ```
 
 ### Step 2 - Add Cypress Configuration
+
+running `npx cypress open` will create a `cypress.config.ts` file in your project directory along with a lot of other files to get started.
 
 ```ts title="cypress.config.ts"
 import { defineConfig } from "cypress";
@@ -139,7 +143,7 @@ jobs:
 ```
 
 :::tip
-The `continue-on-error: true` option is used to allow the Github Action to continue running even if the screenshots fail. This is useful if you want to run the Github Action, upload the screenshots to the Webshot Archive API and comment on the PR with the results.
+The `continue-on-error: true` option is used to allow the Github Action to continue running even if the screenshots fail. This is useful if you want to run the Github Action, upload the screenshots to the Webshot Archive API and comment on the PR with the results then fail the PR if the screenshots fail.
 :::
 
 ```yaml title=".github/workflows/main.yml" {38-46}
@@ -208,7 +212,9 @@ After the PR is merged, the main branch screenshots will be generated and upload
 
 - `env.GITHUB_TOKEN`: The Github token for the Github Actions job. This is used to comment on the PR with the screenshot results. You may omit this if you set comments to false on the with options.
 
-### Step 7 - Validate setup on Github PR
+There are additional advanced options you can use to configure the Github Action. Refer to the [API Docs](/docs/api) for more information.
+
+### Step 7 - Validate the Github PR
 
 Once the action runs, you should see a comment with the new screenshots in the PR as shown below and on [this PR](https://github.com/toshimoto821/webshot-archive-docs/pull/1).
 
