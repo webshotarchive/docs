@@ -1,17 +1,17 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 ---
 
-# Setting up Screenshots with Cypress
+# Uploading Screenshots from e2e tests
 
-After [setting up your API User](/docs/tutorial-basics/create-client-credentials) and [updating your Github Actions workflow](/docs/tutorial-basics/add-github-action-step), you can run cypress, playwright, or other e2e testing tool the Github Action for a Pull Request. The action will upload the screenshots to the Webshot Archive API and comment on the Pull Request with the results.
+After setting up your API User ([Create Client Credentials](/docs/tutorial-basics/create-client-credentials)), you can capture screenshots with [Cypress](https://cypress.io/), [Playwright](https://playwright.dev/), or other e2e testing tools. The Webshot Archive Github Action will upload the screenshots to the Webshot Archive API and comment on the Pull Request with the results.
 
 This section of the tutorial will guide you through:
 
-- setting up cypress.io to capture screenshots
-- running the cypress.io tests with the Github Action
-- validating the screenshots on the Github PR
-- running the Github Action on push to the `main` branch
+- Setting up cypress.io to capture screenshots
+- Running the cypress.io tests with the Github Action
+- Validating the screenshots on the Github PR
+- Running the Github Action on push to the `main` branch
 
 You can find the Github Action code that run on pull request [here](https://github.com/toshimoto821/webshot-archive-docs/blob/main/.github/workflows/pr.yml) and the Github Action code that run on push to the `main` branch [here](https://github.com/toshimoto821/webshot-archive-docs/blob/main/.github/workflows/main.yml).
 
@@ -47,7 +47,7 @@ export default defineConfig({
 ### Step 3 - Add Cypress Test
 
 :::tip
-cypress.io has [a great tutorial](https://docs.cypress.io/app/end-to-end-testing/writing-your-first-end-to-end-test) on how to write tests with cypress.
+cypress.io has [a great tutorial](https://docs.cypress.io/app/end-to-end-testing/writing-your-first-end-to-end-test) on how to write tests and get started with Cypress.
 :::
 
 ```ts title="cypress/e2e/1-getting-started/todo.cy.js"
@@ -80,12 +80,14 @@ The [`start-server-and-test`](https://www.npmjs.com/package/start-server-and-tes
 npm run cypress:e2e
 ```
 
+After running the command, you should see the screenshots in the `dist/cypress` folder. This folder is used in the Github Action to upload the screenshots to the Webshot Archive API.
+
 ### Step 6 - Configure & run the Github Actions
 
 You should have at least two github actions workflows that upload the screenshots to the Webshot Archive API. One for pull requests and one for pushes to the `main` branch.
 Every time you run the Github Action, it will upload the screenshots to the Webshot Archive API and associate the screenshot with the commit hash. When you raise a new PR, the Github Action will compare the screenshot found in the base branch.
 
-```yaml title=".github/workflows/pr.yml"
+```yaml title=".github/workflows/pr.yml" {36-44}
 name: Pull Request Screenshots
 
 on:
@@ -140,7 +142,7 @@ jobs:
 The `continue-on-error: true` option is used to allow the Github Action to continue running even if the screenshots fail. This is useful if you want to run the Github Action, upload the screenshots to the Webshot Archive API and comment on the PR with the results.
 :::
 
-```yaml title=".github/workflows/main.yml"
+```yaml title=".github/workflows/main.yml" {38-46}
 name: Main Branch Screenshots
 
 on:
@@ -194,6 +196,17 @@ jobs:
 ```
 
 After the PR is merged, the main branch screenshots will be generated and uploaded to the Webshot Archive API.
+
+#### Github Action Inputs
+
+- `screenshotsFolder`: The folder where the screenshots are saved.
+- `clientId`: The client id of the client you want to upload the screenshots to (refer to [Create Client Credentials](/docs/tutorial-basics/create-client-credentials)).
+- `clientSecret`: The client secret of the client you want to upload the screenshots to (refer to [Create Client Credentials](/docs/tutorial-basics/create-client-credentials)).
+- `projectId`: The id of the project you want to upload the screenshots to (Refer to the [projects dashboard](https://www.webshotarchive.com/projects)).
+
+  ![Project ID](/img/screenshots/gha-project-id.png)
+
+- `env.GITHUB_TOKEN`: The Github token for the Github Actions job. This is used to comment on the PR with the screenshot results. You may omit this if you set comments to false on the with options.
 
 ### Step 7 - Validate setup on Github PR
 
