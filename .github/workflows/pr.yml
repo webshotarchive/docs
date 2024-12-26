@@ -1,0 +1,54 @@
+name: CI
+
+on:
+  pull_request:
+
+permissions:
+  actions: read
+  contents: read
+  issues: write
+  pull-requests: write
+
+env:
+  ACTIONS_CACHE_URL: ""
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Cache node_modules
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies using pnpm
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Screenshots
+        run: npm run cypress:e2e
+        continue-on-error: true
+        id: screenshots
+
+      - name: WebshotArchive Action
+        uses: toshimoto821/webshotarchive@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          screenshotsFolder: dist/cypress
+          clientId: ${{ secrets.WA_CLIENT_ID }}
+          clientSecret: ${{ secrets.WA_CLIENT_SECRET }}
+          projectId: ${{secrets.WA_PROJECT_ID}}
+
+      - name: Check if screenshots failed
+        if: steps.screenshots.outcome == 'failure'
+        run: exit 1
+
+      # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
+      # - run: npx nx-cloud record -- echo Hello World
