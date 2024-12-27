@@ -20,7 +20,7 @@ describe('Homepage', () => {
     cy.visit('http://localhost:3000')
   })
 
-  it('displays two todo items by default', () => {
+  it('displays the homepage hero title', () => {
     cy.visit('/')
     // We use the `cy.get()` command to get all elements that match the selector.
     // Then, we use `should` to assert that there are two matched items,
