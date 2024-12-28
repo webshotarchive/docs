@@ -1,8 +1,9 @@
 ---
 slug: long-blog-post
 title: Long Blog Post
-authors: yangshun
+authors: toshimoto821
 tags: [hello, docusaurus]
+draft: true
 ---
 
 This is the summary of a very long blog post,
