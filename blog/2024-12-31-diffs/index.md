@@ -23,19 +23,16 @@ You can also see the diff on the Screenshot Comparison Carousel. In this example
 
 <!-- truncate -->
 
-## Setting the Minimum Pixels To Ignore
+## Minimum Pixels To Ignore
+
+This value is the number of pixels that are different between the original screenshot and the comparison screenshot. This is the value returned by `pixelmatch()` as documented [here](https://github.com/mapbox/pixelmatch?tab=readme-ov-file#pixelmatch). If an image differs by just a few pixels because of noise such as font rendering this number will be low. [Here](https://github.com/toshimoto821/webshot-archive-docs/pull/2) is an example with nearly `4000` pixel differents.
 
 You can set the minimum pixels to ignore on the Project Settings page.
-
-### Minimum Pixels To Ignore
-
-The value is the number of pixels that are different between the original screenshot and the new screenshot. This is the value returned by `pixelmatch()` as documented [here](https://github.com/mapbox/pixelmatch?tab=readme-ov-file#pixelmatch). If an image differs by just a few pixels because of noise such as font rendering this number will be very low. [Here](https://github.com/toshimoto821/webshot-archive-docs/pull/2) is an example with nearly `4000` pixel differents.
+![Project Settings](./pixel-diff-setting.png)
 
 #### Global Minimum Pixels To Ignore on Diffs
 
-Setting this value will set the value for all images you upload. Any image differences that are less than this value will be treated as identical to the comparison image.
-
-![Project Settings](./pixel-diff-setting.png)
+Setting this value will set the value for all images you upload in this project. Any image differences that are less than this value will be treated as identical to the comparison image.
 
 #### Pixels to ignore by filename
 
@@ -47,4 +44,4 @@ The file pattern a `<glob>=<number>`
 
 This will set the minimum pixels to ignore to `1000` for all screenshots in the `some-cool-test.cy.ts` file.
 
-Now when minor changes are done, the screenshots are treated as identical and no changes are noted. The benefit of Webshot Archive is to be able to clearly understand what and when changes significant changes are made.
+Now when minor changes are done, the screenshots are treated as identical and no changes are documented. The benefit of Webshot Archive is to be able to clearly understand what and when <b>significant</b> changes are made.
