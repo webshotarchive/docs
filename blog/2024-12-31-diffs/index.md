@@ -3,7 +3,6 @@ slug: diffs
 title: Image Diffing
 authors: [toshimoto821]
 tags: [developer, image, diffing]
-draft: true
 ---
 
 # Image Diffing
