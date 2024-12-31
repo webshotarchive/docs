@@ -40,8 +40,14 @@ The file pattern a `<glob>=<number>`
 
 ```text
 **/some-cool-test.cy.ts/**=1000
+**/some-other-cool-test.cy.ts/**=2000
 ```
 
-This will set the minimum pixels to ignore to `1000` for all screenshots in the `some-cool-test.cy.ts` file.
+This will set the minimum pixels to ignore to `1000` for all screenshots in the `some-cool-test.cy.ts` file. and `2000` for all screenshots in the `some-other-cool-test.cy.ts` file.
+
+:::tip
+Use one line per file pattern and create as many rules as you need.
+
+:::
 
 Now when minor changes are done, the screenshots are treated as identical and no changes are documented. The benefit of Webshot Archive is to be able to clearly understand what and when <b>significant</b> changes are made.
