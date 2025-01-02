@@ -190,9 +190,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           screenshotsFolder: dist/cypress
-          clientId: ${{ secrets.WA_CLIENT_ID }}
-          clientSecret: ${{ secrets.WA_CLIENT_SECRET }}
-          projectId: ${{secrets.WA_PROJECT_ID}}
+          clientId: ${{ secrets.CLIENT_ID }}
+          clientSecret: ${{ secrets.CLIENT_SECRET }}
+          projectId: ${{secrets.PROJECT_ID}}
 
       - name: Check if screenshots failed
         if: steps.screenshots.outcome == 'failure'
