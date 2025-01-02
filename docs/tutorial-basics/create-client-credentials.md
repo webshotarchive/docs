@@ -15,7 +15,7 @@ This section of the tutorial will guide you through creating a Client ID and Cli
 Credentials to use for Github Actions to upload images and interact with the Webshot Archive API can be created on the [account page](https://www.webshotarchive.com/account) of [webshotarchive.com](https://www.webshotarchive.com).
 
 :::info
-You will need to create an account on [webshotarchive.com](https://www.webshotarchive.com) to create credentials. Creating an account is free, however you will not be able to upload images or create a service account user without a paid subscription (plans start at $5/month).
+You will need to create an account on [webshotarchive.com](https://www.webshotarchive.com) to create credentials. Creating an account is free, however you will not be able to upload images or create a service account user without a paid subscription (plans start at $5/month and there is a 14 day free trial - cancel anytime).
 :::
 
 ## Add User (Service Account User)
