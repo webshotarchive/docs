@@ -1,6 +1,6 @@
 {
   "name": "timechain-docs",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "cypress:e2e": "start-server-and-test serve http://localhost:3000 'cypress run --e2e'",
