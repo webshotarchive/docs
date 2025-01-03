@@ -66,8 +66,8 @@ const config: Config = {
     navbar: {
       title: 'Webshot Archive Docs',
       logo: {
-        alt: 'My Site Logo',
-        src: 'img/logo-64.png',
+        alt: 'Webshot Archive Logo',
+        src: 'img/logo.svg?v=1',
       },
       items: [
 
