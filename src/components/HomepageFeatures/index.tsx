@@ -37,7 +37,10 @@ const FeatureList: FeatureItem[] = [
       <>
         I'm a solo software developer building what I think is a useful tool. If
         you have any questions or feedback, please let me know by creating a
-        github issue.
+        <a href="https://github.com/toshimoto821/webshot-archive-docs/issues">
+          github issue
+        </a>
+        .
       </>
     ),
   },
