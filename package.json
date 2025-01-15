@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "cypress:e2e": "start-server-and-test serve http://localhost:3000 'cypress run --e2e'",
+    "cypress:open": "cypress open",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build",
