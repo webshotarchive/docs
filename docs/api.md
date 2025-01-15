@@ -42,7 +42,7 @@ Upload images to the Webshot Archive using `toshimoto821/webshotarchive` availab
 
 ```yaml
 - name: WebshotArchive Action
-  uses: toshimoto821/toshi-action@images
+  uses: toshimoto821/toshi-action@v0.0.3
   env:
     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   with:
