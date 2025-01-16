@@ -38,12 +38,12 @@ npm install cypress --save-dev
 running `npx cypress open` will create a `cypress.config.ts` file in your project directory along with a lot of other files to get started.
 
 ```ts title="cypress.config.ts"
-import { defineConfig } from "cypress";
+import { defineConfig } from 'cypress';
 
 export default defineConfig({
   e2e: {
-    baseUrl: "http://localhost:3000", // update according to how your test run
-    screenshotsFolder: "dist/cypress",
+    baseUrl: 'http://localhost:3000', // update according to how your test run
+    screenshotsFolder: 'dist/cypress',
   },
 });
 ```
@@ -55,12 +55,12 @@ cypress.io has [a great tutorial](https://docs.cypress.io/app/end-to-end-testing
 :::
 
 ```ts title="cypress/e2e/1-getting-started/todo.cy.js"
-describe("Homepage", () => {
-  it("should have the correct title", () => {
-    cy.visit("/");
-    cy.get("<some selector>").should("have.text", "<some text>");
+describe('Homepage', () => {
+  it('should have the correct title', () => {
+    cy.visit('/');
+    cy.get('<some selector>').should('have.text', '<some text>');
     cy.screenshot({
-      capture: "fullPage",
+      capture: 'fullPage',
     });
   });
 });

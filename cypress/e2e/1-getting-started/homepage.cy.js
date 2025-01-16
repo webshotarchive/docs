@@ -17,20 +17,20 @@ describe('Homepage', () => {
     // so we must tell it to visit our website with the `cy.visit()` command.
     // Since we want to visit the same URL at the start of all our tests,
     // we include it in our beforeEach function so that it runs before each test
-    cy.visit('http://localhost:3000')
-  })
+    cy.visit('http://localhost:3000');
+  });
 
   it('displays the homepage hero title', () => {
-    cy.visit('/')
+    cy.visit('/');
     // We use the `cy.get()` command to get all elements that match the selector.
     // Then, we use `should` to assert that there are two matched items,
     // which are the two default items.
-    cy.get('.hero__title').should('have.text', 'Webshot Archive Docs')
+    cy.get('.hero__title').should('have.text', 'Webshot Archive Docs');
 
     cy.screenshot({
       capture: 'fullPage',
-    })
-  })
+    });
+  });
 
   // it('can add new todo items', () => {
   //   // We'll store our item text in a variable so we can reuse it
@@ -138,4 +138,4 @@ describe('Homepage', () => {
   //     cy.contains('Clear completed').should('not.exist')
   //   })
   // })
-})
+});
