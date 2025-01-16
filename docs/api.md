@@ -105,15 +105,15 @@ body:
 
 ```javascript
 const headers = {
-  "x-client-id": "<client-id>",
-  "x-client-secret": "<client-secret>",
+  'x-client-id': '<client-id>',
+  'x-client-secret': '<client-secret>',
 };
 const body = {
   find: {
-    commitSha: "f1db95ff8605a53fd28ae011f8cbe8ad876dc5e8",
+    commitSha: 'f1db95ff8605a53fd28ae011f8cbe8ad876dc5e8',
   },
   update: {
-    tags: ["release", "production"],
+    tags: ['release', 'production'],
     // "path": "new/path/to/image.png",
     // "originalName": "renamed-image.png",
     // "commitSha": "updated-sha-value",
