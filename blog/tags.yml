@@ -17,3 +17,28 @@ hola:
   label: Hola
   permalink: /hola
   description: Hola tag description
+
+github-actions:
+  label: Github Actions
+  permalink: /github-actions
+  description: Github Actions tag description
+
+webshot-archive-ui:
+  label: Webshot Archive UI
+  permalink: /webshot-archive-ui
+  description: Webshot Archive UI tag description
+
+diffing:
+  label: Diffing
+  permalink: /diffing
+  description: Diffing tag description
+
+developer:
+  label: Developer
+  permalink: /developer
+  description: Developer tag description
+
+image:
+  label: Image
+  permalink: /image
+  description: Image tag description
