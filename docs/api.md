@@ -74,7 +74,7 @@ For greater debugging information, you can enable debug logs by setting the `ACT
     "size": 637329,
     "branchName": "main",
     "mergedBranch": "main",
-    "type": "merge",
+    "eventName": "merge",
     "tags": ["release"],
     "metaVersion": 1,
     "createdAt": "2024-11-26T01:00:09.191Z",
@@ -118,7 +118,7 @@ const body = {
     // "commitSha": "updated-sha-value",
     // "branchName": "feature/new-branch",
     // "mergedBranch": "main",
-    // "type": "merge"
+    // "eventName": "merge"
   },
 };
 await axios.post(
@@ -138,15 +138,20 @@ await axios.post(
 
 #### Body Parameters
 
-| Parameter           | Type     | Required | Description              |
-| ------------------- | -------- | -------- | ------------------------ |
-| find                | object   | Yes      | The object to find       |
-| find.commitSha      | string   | No       | The sha to match on      |
-| update              | object   | Yes      | The object to update     |
-| update.tags         | string[] | Yes      | The tags to set          |
-| update.path         | string   | No       | The path to set          |
-| update.originalName | string   | No       | The original name to set |
-| update.commitSha    | string   | No       | The commit sha to set    |
-| update.branchName   | string   | No       | The branch name to set   |
-| update.mergedBranch | string   | No       | The merged branch to set |
-| update.type         | string   | No       | The type to set          |
+| Parameter           | Type     | Required | Description                   |
+| ------------------- | -------- | -------- | ----------------------------- |
+| find                | object   | Yes      | The object to find            |
+| find.commitSha      | string   | No       | The sha to match on           |
+| find.branchName     | string   | No       | The branch name to match on   |
+| find.eventName      | string   | No       | The event name to match on    |
+| find.path           | string   | No       | The path to match on          |
+| find.originalName   | string   | No       | The original name to match on |
+| find.tags           | string[] | No       | The tags to match on          |
+| update              | object   | Yes      | The object to update          |
+| update.tags         | string[] | Yes      | The tags to set               |
+| update.path         | string   | No       | The path to set               |
+| update.originalName | string   | No       | The original name to set      |
+| update.commitSha    | string   | No       | The commit sha to set         |
+| update.branchName   | string   | No       | The branch name to set        |
+| update.mergedBranch | string   | No       | The merged branch to set      |
+| update.eventName    | string   | No       | The event name to set         |
