@@ -7,15 +7,24 @@ tags: [developer, github-actions]
 
 # Github Actions
 
-There are certain Github Action configurations that are required to run the Webshot Archive UI tests and comment on PR's. The primary takeaways are:
+Github Actions run on a [Github Event](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows), however, the default
+behavior of the Webshot Archive Github action will differ based on the type of event being run.
 
-- the workflow runs on pull_request
-- the workflow runs on push (for main branch)
-- the action has the correct permissions
+When running a workflow on `pull_request`, the Webshot Archive Github Action will default its **compareCommitSha** (the commit to compare against) based on `${{ github.event.pull_request.base.sha }}`.
+For a workflow that runs on `push`, the **compareCommitSha** is based on `${{github.event.before}}`. You can override this behavior by setting the **compareCommitSha** in the action input options.
+See the [API](/docs/api) docs for more information of customizing the action.
+
+:::note
+To comment on a pull request with the captured images, the workflow must run on `pull_request`.
+
+:::
 
 <!-- truncate -->
 
-Below is an example of the Github Action configuration for the Webshot Archive UI tests.
+Below is an example of the Github Action workflow that runs on both `pull_request` and `push`.
+The purpose is to capture the pull request images and comment on the PR as well as
+capture the main branch images after the pr is merged. Running the action on push to `main` will also
+gaurantee that the main branch always has the latest UI snapshot.
 
 ```yaml title="create-webshot-archive-ui-action.yml" showLineNumbers
 name: Cypress Tests
@@ -73,6 +82,16 @@ jobs:
           projectId: ${{vars.WEBSHOT_PROJECT_ID}}
 ```
 
-To comment on a pull request, the action needs to run on pull_request, not on push. This is because the action needs to have the base commit to compare against.
-Additionally, when the pull request is merged into main, the action runs on push to push the main branch image to the Webshot Archive. This way the main branch
-always has the latest UI snapshot.
+You will also notice that the action is required to have the correct permissions to run:
+
+```yaml
+permissions:
+  actions: read # to run the action
+  contents: read # to checkout the code
+  issues: write # for comment on PR
+  pull-requests: write # for comment on PR
+```
+
+Commenting on a pull request requires the `issues: write` and `pull-requests: write` permissions.
+You will also need to redeclare the standard default permissions of `actions: read` and `contents: read`
+as the action will not have access to these permissions by default.
