@@ -8,11 +8,11 @@ tags: [developer, github-actions]
 # Github Actions
 
 Github Actions run on a [Github Event](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows), however, the default
-behavior of the Webshot Archive Github action will differ based on the type of event being run.
+behavior of the Webshot Archive Github Action will differ based on the type of event being run.
 
 When running a workflow on `pull_request`, the Webshot Archive Github Action will default its **compareCommitSha** (the commit to compare against) based on `${{ github.event.pull_request.base.sha }}`.
-For a workflow that runs on `push`, the **compareCommitSha** is based on `${{github.event.before}}`. You can override this behavior by setting the **compareCommitSha** in the action input options.
-See the [API](/docs/api) docs for more information of customizing the action.
+For a workflow that runs on `push`, the **compareCommitSha** is based on `${{ github.event.before }}`. Override this behavior by setting the **compareCommitSha** in the action input options.
+See the [API](/docs/api) docs for more information of customizing the action input options.
 
 :::note
 To comment on a pull request with the captured images, the workflow must run on `pull_request`.
