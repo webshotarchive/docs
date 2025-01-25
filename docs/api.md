@@ -26,7 +26,6 @@ Upload images to the Webshot Archive using `toshimoto821/webshotarchive` availab
 | branchName                 | string  | No       | `${{ github.head_ref }}`                    | `${GITHUB_REF##*/}`          | The branch associated with the screenshot.       |
 | mergedBranch               | string  | No       | -                                           | \* see below                 | The branch that was merged.                      |
 | comment                    | boolean | No       | true                                        | false                        | Whether to comment on the PR.                    |
-| type                       | string  | No       | "push"                                      | "merge"                      | Push or merge.                                   |
 | tags                       | string  | No       | \* see below                                | \* see below                 | Tags to add to the screenshots.                  |
 | compareBranch (deprecated) | string  | No       | -                                           | -                            | The branch to compare against.                   |
 
