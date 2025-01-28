@@ -68,6 +68,8 @@ describe('Homepage', () => {
 
 ### Step 4 - Setup npm script
 
+You can use the `start-server-and-test` package to start the server and run the cypress tests locally and/or with Github Actions as shown below:
+
 ```json title="package.json"
 "scripts": {
   "cypress:e2e": "npx start-server-and-test serve http://localhost:3000 'cypress run --e2e'"
@@ -77,6 +79,8 @@ describe('Homepage', () => {
 :::tip
 The [`start-server-and-test`](https://www.npmjs.com/package/start-server-and-test) package is used to start the server and run the cypress tests. You can install it locally as a dev dependency rather than using npx if you prefer.
 :::
+
+Alternatively, on Github Actions you can use the `cypress-io/github-action` to run the cypress tests. If you are new to Cypress or Github Actions, I recommend reviewing this [tutorial](https://docs.cypress.io/app/continuous-integration/github-actions) to get started and using the `cypress-io/github-action`. The important part is that cypress runs on Github Actions and creates screenshots to upload to the Webshot Archive API.
 
 ### Step 5 - Validate setup locally
 
@@ -91,7 +95,7 @@ After running the command, you should see the screenshots in the `dist/cypress` 
 You should have at least two github actions workflows that upload the screenshots to the Webshot Archive API. One for pull requests and one for pushes to the `main` branch.
 Every time you run the Github Action, it will upload the screenshots to the Webshot Archive API and associate the screenshot with the commit hash. When you raise a new PR, the Github Action will compare the screenshot found in the base branch.
 
-```yaml title=".github/workflows/pr.yml" {36-44}
+```yaml title=".github/workflows/pr.yml" {36-44} showLineNumbers
 name: Pull Request Screenshots
 
 on:
@@ -146,7 +150,7 @@ jobs:
 The `continue-on-error: true` option is used to allow the Github Action to continue running even if the screenshots fail. This is useful if you want to run the Github Action, upload the screenshots to the Webshot Archive API and comment on the PR with the results then fail the PR if the screenshots fail.
 :::
 
-```yaml title=".github/workflows/main.yml" {38-46}
+```yaml title=".github/workflows/main.yml" {38-46} showLineNumbers
 name: Main Branch Screenshots
 
 on:
@@ -212,7 +216,7 @@ After the PR is merged, the above action should run and the main branch screensh
 
 - `env.GITHUB_TOKEN`: The Github token for the Github Actions job. This is used to comment on the PR with the screenshot results. You may omit this if you set comments to false on the with options.
 
-There are additional advanced options you can use to configure the Github Action. Refer to the [API Docs](/docs/api) for more information.
+There are additional advanced options you can use to configure the Github Action. Refer to the [API Docs](/docs/api) and [Recipes](/docs/category/recipes) for more details.
 
 ### Step 7 - Validate the Github PR
 
