@@ -79,7 +79,7 @@ const config: Config = {
         },
         { to: '/blog', label: 'Blog', position: 'left' },
         {
-          href: 'https://github.com/toshimoto821/webshot-archive-docs',
+          href: 'https://github.com/webshotarchive/docs',
           label: 'GitHub',
           position: 'right',
         },
@@ -119,7 +119,7 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/toshimoto821/webshot-archive-docs',
+              href: 'https://github.com/webshotarchive/docs',
             },
           ],
         },

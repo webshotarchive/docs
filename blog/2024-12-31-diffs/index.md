@@ -25,7 +25,7 @@ You can also see the diff on the Screenshot Comparison Carousel. In this example
 
 ## Minimum Pixels To Ignore
 
-This value is the number of pixels that are different between the original screenshot and the comparison screenshot. This is the value returned by `pixelmatch()` as documented [here](https://github.com/mapbox/pixelmatch?tab=readme-ov-file#pixelmatch). If an image differs by just a few pixels because of noise such as font rendering this number will be low. [Here](https://github.com/toshimoto821/webshot-archive-docs/pull/2) is an example with nearly `4000` pixel differents.
+This value is the number of pixels that are different between the original screenshot and the comparison screenshot. This is the value returned by `pixelmatch()` as documented [here](https://github.com/mapbox/pixelmatch?tab=readme-ov-file#pixelmatch). If an image differs by just a few pixels because of noise such as font rendering this number will be low. [Here](https://github.com/webshotarchive/docs/pull/2) is an example with nearly `4000` pixel differents.
 
 You can set the minimum pixels to ignore on the Project Settings page.
 ![Project Settings](./pixel-diff-setting.png)

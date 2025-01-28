@@ -13,7 +13,7 @@ This section of the tutorial will guide you through:
 - Validating the screenshots on the Github PR
 - Running the Github Action on push to the `main` branch
 
-You can find the Github Action code that run on pull request [here](https://github.com/toshimoto821/webshot-archive-docs/blob/main/.github/workflows/pr.yml#L36-L44) and the Github Action code that run on push to the `main` branch [here](https://github.com/toshimoto821/webshot-archive-docs/blob/main/.github/workflows/main.yml#L38-L46).
+You can find the Github Action code that run on pull request [here](https://github.com/webshotarchive/docs/blob/main/.github/workflows/pr.yml#L36-L44) and the Github Action code that run on push to the `main` branch [here](https://github.com/webshotarchive/docs/blob/main/.github/workflows/main.yml#L38-L46).
 
 :::tip
 For comparision screenshots you will need to have a main branch or base branch with the screenshots already uploaded to the Webshot Archive API. Webshot Archive stores images with their commit hash so if you want to compare screenshots from a PR to the main branch, you will need to have the screenshots from the main branch saved. Your first PR will not have any screenshots to compare to, thats ok. After you merge your first PR, the main branch screenshots will be uploaded to the Webshot Archive API (using the Github Action below) and you will be able to compare screenshots from future PRs to the main branch.
@@ -220,10 +220,10 @@ There are additional advanced options you can use to configure the Github Action
 
 ### Step 7 - Validate the Github PR
 
-Once the action runs, you should see a comment with the new screenshots in the PR as shown below and on [this PR](https://github.com/toshimoto821/webshot-archive-docs/pull/1).
+Once the action runs, you should see a comment with the new screenshots in the PR as shown below and on [this PR](https://github.com/webshotarchive/docs/pull/1).
 
 ![Github PR Screenshots](/img/screenshots/gha-screenshot-new.png)
 
-Once merged, the main branch screenshots will be uploaded to the Webshot Archive API and you will be able to see a comparison of the screenshots from the base or main branch and the PR on any new PRs raised (as shown below and in [this pr](https://github.com/toshimoto821/webshot-archive-docs/pull/2)).
+Once merged, the main branch screenshots will be uploaded to the Webshot Archive API and you will be able to see a comparison of the screenshots from the base or main branch and the PR on any new PRs raised (as shown below and in [this pr](https://github.com/webshotarchive/docs/pull/2)).
 
 ![Github PR Screenshots](/img/screenshots/gha-screenshot-compare.png)
