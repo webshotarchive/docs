@@ -72,7 +72,7 @@ jobs:
           NEXT_TELEMETRY_DISABLED: 1
 
       - name: WebshotArchive Action
-        uses: toshimoto821/webshotarchive@v0.0.3
+        uses: webshotarchive/github-action@v0.1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:

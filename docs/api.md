@@ -11,7 +11,7 @@ Make sure you [create client credentials](/docs/tutorial-basics/create-client-cr
 
 ### Upload Images
 
-Upload images to the Webshot Archive using `toshimoto821/webshotarchive` available at [github.com/toshimoto821/webshotarchive](https://github.com/toshimoto821/webshotarchive), the Github marketplace is coming soon.
+Upload images to the Webshot Archive using `webshotarchive/github-action` available at [https://github.com/webshotarchive/github-action](https://github.com/webshotarchive/github-action) and on the [Github Marketplace](https://github.com/webshotarchive/github-action)
 
 #### Parameters
 
@@ -32,8 +32,8 @@ Upload images to the Webshot Archive using `toshimoto821/webshotarchive` availab
 ##### Notes
 
 - `compareBranch`: Is deprecated and will be removed in a future release.
-- `mergedBranch`: The merged branch logic is handled by the Webshot Archive API [here](https://github.com/toshimoto821/webshotarchive/blob/main/src/defaultFields.js#L31-L95). The point is to have the merged branch be the branch that was merged into.
-- `tags`: The tags logic is handled by the Webshot Archive API [here](https://github.com/toshimoto821/webshotarchive/blob/main/src/main.js#L192-L205). Key points:
+- `mergedBranch`: The merged branch logic is handled by the Webshot Archive API [here](https://github.com/webshotarchive/github-action/blob/main/src/defaultFields.js#L29-L89). The point is to have the merged branch be the branch that was merged into.
+- `tags`: The tags logic is handled by the Webshot Archive API [here](https://github.com/webshotarchive/github-action/blob/main/src/main.js#L194-L200). Key points:
   - images ending in (failed).png get `failed` tag.
   - images with title tags-[tag1, tag2, tag3] get the tags `tag1`, `tag2`, `tag3`.
 

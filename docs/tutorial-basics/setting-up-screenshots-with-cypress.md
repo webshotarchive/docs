@@ -132,7 +132,7 @@ jobs:
         id: screenshots
 
       - name: WebshotArchive Action
-        uses: toshimoto821/webshotarchive@main
+        uses: webshotarchive/github-action@v0.1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -189,7 +189,7 @@ jobs:
         id: screenshots
 
       - name: WebshotArchive Action
-        uses: toshimoto821/webshotarchive@main
+        uses: webshotarchive/github-action@v0.1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
