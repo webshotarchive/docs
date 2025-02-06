@@ -8,7 +8,7 @@ Let's discover **Webshot Archive**.
 
 ## Getting Started
 
-Webshot Archive is a tool for capturing screenshots of your website and comparing them to previous screenshots. It is designed to work with Github Actions to capture screenshots of your website and upload them to the Webshot Archive API. Below is an example of what a comment looks like on a Github PR with the Webshot Archive Github Action.
+Webshot Archive is a tool for capturing screenshots of your website and comparing them to previous screenshots. It is designed to work with Github Actions to capture screenshots of your website and upload them to the Webshot Archive API. Below is an example of what a comment looks like on a Github PR with the [Webshot Archive Github Action](https://github.com/marketplace/actions/webshot-archive-github-action).
 
 ![Github PR Screenshots](/img/screenshots/gha-screenshot-compare.png)
 
