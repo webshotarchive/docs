@@ -12,6 +12,10 @@ Webshot Archive is a tool for capturing screenshots of your website and comparin
 
 ![Github PR Screenshots](/img/screenshots/gha-screenshot-compare.png)
 
+You can also view the screenshots and diffs over time in the Webshot Archive UI.
+
+![Webshot Archive UI](/img/screenshots/webshot-archive-ui.png)
+
 It works by capturing screenshots of your website and uploading them to the Webshot Archive API. It uses [pixelmatch](https://github.com/mapbox/pixelmatch) to compare screenshots and generate a diff. It then comments on the PR with the screenshots and a diff of the screenshots. You can also use the Webshot Archive UI to view the screenshots and diffs over time the same way you might view the history of a file in Github.
 
 Get started by [**Signing Up**](https://www.webshotarchive.com/account) and [**Creating a Project**](https://www.webshotarchive.com/projects) on [webshotarchive.com](https://www.webshotarchive.com).
