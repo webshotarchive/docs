@@ -2,7 +2,7 @@
 
 ## Homepage
 
-![account](./account.gif)
+![Homepage](./homepage.gif)
 
 ## Account
 
