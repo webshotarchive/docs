@@ -2,8 +2,8 @@
 
 ## Homepage
 
-![account](/img/videos/account.gif)
+![account](./account.gif)
 
 ## Account
 
-![account](/img/videos/account.gif)
+![account](./account.gif)
