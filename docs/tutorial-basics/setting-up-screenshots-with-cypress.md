@@ -226,4 +226,4 @@ Once the action runs, you should see a comment with the new screenshots in the P
 
 Once merged, the main branch screenshots will be uploaded to the Webshot Archive API and you will be able to see a comparison of the screenshots from the base or main branch and the PR on any new PRs raised (as shown below and in [this pr](https://github.com/webshotarchive/docs/pull/2)).
 
-![Github PR Screenshots](/img/screenshots/gha-screenshot-compare.png)
+![Github PR Diff](/img/screenshots/gha-screenshot-compare.png)

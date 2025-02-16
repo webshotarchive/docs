@@ -41,6 +41,11 @@ test('uploading tags-[tutorial]', async ({ page }, testInfo) => {
     state: 'visible',
     timeout: 5000,
   });
+
+  await page.waitForSelector('img[alt="Github PR Diff"]', {
+    state: 'visible',
+    timeout: 5000,
+  });
   await page.evaluate(() => window.scrollTo(0, 0));
   // Optional: Add a small delay
   await page.waitForTimeout(1000);
