@@ -12,6 +12,18 @@
   border: 1px solid #e0e0e0;
 }
 
+@media (max-width: 1280px) {
+  .featureSvg {
+    width: 320px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .featureSvg {
+    width: 600px;
+  }
+}
+
 .heroFeature {
   display: flex;
   flex-direction: column;
