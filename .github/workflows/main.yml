@@ -27,11 +27,14 @@ jobs:
       - name: Install dependencies using pnpm
         run: npm ci
 
+      - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
+
       - name: Build
         run: npm run build
 
       - name: Screenshots
-        run: npm run cypress:e2e
+        run: npx playwright test
         continue-on-error: true
         id: screenshots
 
@@ -40,7 +43,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          screenshotsFolder: dist/cypress
+          screenshotsFolder: dist/playwright
           clientId: ${{ secrets.WA_CLIENT_ID }}
           clientSecret: ${{ secrets.WA_CLIENT_SECRET }}
           projectId: ${{secrets.WA_PROJECT_ID}}
