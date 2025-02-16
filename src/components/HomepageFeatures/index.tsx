@@ -6,9 +6,22 @@ type FeatureItem = {
   title: string;
   src: string;
   description: JSX.Element;
+  type: 'png' | 'webm';
 };
 
 const FeatureList: FeatureItem[] = [
+  {
+    title: 'Compare Changes Over Time',
+    src: '/img/screenshots/ui-tour-project-dashboard.png',
+    type: 'png',
+    description: (
+      <>
+        Webshot Archive lets you view the screenshots and diffs over time.
+        Integration with Github so you can view commits and their associated
+        diffs. Imagine all the benefits of having screenshots of each commit!
+      </>
+    ),
+  },
   {
     title: 'Github Actions Integration',
     src: '/img/screenshots/gha-screenshot-compare.png',
@@ -18,37 +31,41 @@ const FeatureList: FeatureItem[] = [
         Archive API and leave a comment on the PR with the diffs.
       </>
     ),
+    type: 'png',
   },
+
   {
-    title: 'Compare over time',
-    src: '/img/screenshots/ui-tour-project-dashboard.png',
+    title: 'Share Clips With Your Team',
+    src: 'https://api.webshotarchive.com/api/video/id/5e29bf66-3b15-4f4e-a13d-46e348218dc5.webm',
+    type: 'webm',
     description: (
       <>
-        The Webshot Archive UI lets you view the screenshots and diffs over
-        time. It also integrates with Github so you can view commits and their
-        associated diffs.
-      </>
-    ),
-  },
-  {
-    title: 'Powered by Me',
-    src: '/img/rico.jpg',
-    description: (
-      <>
-        I'm a solo software developer building what I think is a useful tool. If
-        you have any questions or feedback, please let me know by creating a{' '}
-        <a href="https://github.com/webshotarchive/docs/issues">github issue</a>
-        .
+        Capture changes and share clips with your team. Share to discord, slack,
+        email or via a link. Clips help catch changes, bugs, and features
+        earlier in the development cycle.
       </>
     ),
   },
 ];
 
-function Feature({ title, src, description }: FeatureItem) {
+function Feature({ title, src, description, type }: FeatureItem) {
   return (
-    <div className={clsx('col col--4')}>
+    <div className={clsx('col col--4', styles.heroFeature)}>
       <div className="text--center">
-        <img src={src} className={styles.featureSvg} role="img" />
+        {type === 'png' ? (
+          <img src={src} className={styles.featureSvg} role="img" />
+        ) : (
+          <video
+            src={src}
+            className={styles.featureSvg}
+            role="img"
+            controls
+            autoPlay
+            muted
+            loop
+            playsInline
+          />
+        )}
       </div>
       <div className="text--center padding-horiz--md">
         <Heading as="h3">{title}</Heading>
