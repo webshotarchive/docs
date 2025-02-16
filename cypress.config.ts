@@ -7,5 +7,7 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
+    viewportWidth: 1600,
+    viewportHeight: 1200,
   },
 });
