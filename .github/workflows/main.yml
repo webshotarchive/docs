@@ -31,7 +31,7 @@ jobs:
         run: npx playwright install --with-deps
 
       - name: Build
-        run: npm run build
+        run: npm run build:ci
 
       - name: Screenshots
         run: npx playwright test
@@ -39,7 +39,7 @@ jobs:
         id: screenshots
 
       - name: WebshotArchive Action
-        uses: webshotarchive/github-action@v0.2.1
+        uses: webshotarchive/github-action@v0.4.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
