@@ -60,7 +60,7 @@ const config: Config = {
     ],
   ],
   customFields: {
-    ci: process.env.CI,
+    eagerLoadImg: process.env.EAGER,
   },
   themeConfig: {
     // Replace with your project's social card
