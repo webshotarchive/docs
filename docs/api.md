@@ -21,6 +21,7 @@ Upload images to the Webshot Archive using `webshotarchive/github-action` availa
 | clientId                   | string  | Yes      | -                                           | -                            | Your client ID.                                  |
 | clientSecret               | string  | Yes      | -                                           | -                            | Your client secret.                              |
 | projectId                  | string  | Yes      | -                                           | -                            | The Webshot Archive projectId.                   |
+| failedTestPattern          | string  | no       | "failed"                                    | "failed"                     | A regular expression to match failed tests.      |
 | commitSha                  | string  | No       | `${{github.event.pull_request.head.sha }}`  | `${{ github.event.after }}`  | The commit SHA represented in the screenshot     |
 | compareCommitSha           | string  | No       | `${{ github.event.pull_request.base.sha }}` | `${{ github.event.before }}` | The commit SHA to compare with.                  |
 | branchName                 | string  | No       | `${{ github.head_ref }}`                    | `${GITHUB_REF##*/}`          | The branch associated with the screenshot.       |
@@ -31,8 +32,7 @@ Upload images to the Webshot Archive using `webshotarchive/github-action` availa
 
 ##### Notes
 
-- `compareBranch`: Is deprecated and will be removed in a future release.
-- `mergedBranch`: The merged branch logic is handled by the Webshot Archive API [here](https://github.com/webshotarchive/github-action/blob/main/src/defaultFields.js#L29-L89). The point is to have the merged branch be the branch that was merged into.
+- `failedTestPattern`: The `failedTestPattern` is used to match filenames of the failed tests in the screenshot. Different test runners will name the files differently.
 - `tags`: The tags logic is handled by the Webshot Archive API [here](https://github.com/webshotarchive/github-action/blob/main/src/main.js#L194-L200). Key points:
   - images ending in (failed).png get `failed` tag.
   - images with title tags-[tag1, tag2, tag3] get the tags `tag1`, `tag2`, `tag3`.
