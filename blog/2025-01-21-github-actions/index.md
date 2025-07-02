@@ -72,26 +72,10 @@ jobs:
           NEXT_TELEMETRY_DISABLED: 1
 
       - name: WebshotArchive Action
-        uses: webshotarchive/github-action@v0.1.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: webshotarchive/github-action@v1.0.5
         with:
           screenshotsFolder: .next/cypress
           clientId: ${{ vars.WEBSHOT_CLIENT_ID }}
           clientSecret: ${{ secrets.WEBSHOT_CLIENT_SECRET }}
           projectId: ${{vars.WEBSHOT_PROJECT_ID}}
 ```
-
-You will also notice that the action is required to have the correct permissions to run:
-
-```yaml
-permissions:
-  actions: read # to run the action
-  contents: read # to checkout the code
-  issues: write # for comment on PR
-  pull-requests: write # for comment on PR
-```
-
-Commenting on a pull request requires the `issues: write` and `pull-requests: write` permissions.
-You will also need to redeclare the standard default permissions of `actions: read` and `contents: read`
-as the action will not have access to these permissions by default.

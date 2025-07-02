@@ -38,9 +38,7 @@ jobs:
 
       - name: WebshotArchive Action
         if: github.actor != 'dependabot[bot]'
-        uses: webshotarchive/github-action@v0.4.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: webshotarchive/github-action@v1.0.5
         with:
           screenshotsFolder: dist/playwright
           clientId: ${{ secrets.WA_CLIENT_ID }}
