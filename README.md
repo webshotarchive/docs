@@ -1,41 +1,177 @@
-# Website
+# Webshot Archive Documentation
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+This is the documentation site for [Webshot Archive](https://www.webshotarchive.com), a visual regression testing platform that helps you capture, compare, and track visual changes in your web applications.
+
+## 🚀 Quick Start
+
+### Prerequisites
+
+- Node.js 18+
+- pnpm (recommended) or npm
 
 ### Installation
 
-```
-$ yarn
-```
+```bash
+# Install dependencies
+pnpm install
 
-### Local Development
-
-```
-$ yarn start
+# Start development server
+pnpm start
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+The site will be available at `http://localhost:3000`
 
-### Build
+### Building for Production
 
-```
-$ yarn build
-```
+```bash
+# Build the site
+pnpm build
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
+# Preview the build
+pnpm serve
 ```
 
-Not using SSH:
+## 📚 Documentation Structure
 
 ```
-$ GIT_USER=<Your GitHub username> yarn deploy
+docs/
+├── intro.md                           # Welcome and overview
+├── quick-start.md                     # Step-by-step getting started
+├── tutorial-basics/                   # Core tutorials
+│   ├── create-client-credentials.mdx  # Authentication setup
+│   └── setting-up-screenshots-with-cypress.mdx  # Cypress integration
+├── recipes/                           # Practical examples
+│   └── push-pr-action.md              # GitHub Actions workflow
+├── tutorial-webshotarchive-ui/        # Dashboard guide
+│   ├── account.md                     # Account management
+│   ├── project.md                     # Project overview
+│   └── project-settings.md            # Project configuration
+├── api.md                             # API reference
+└── troubleshooting.md                 # Common issues and solutions
 ```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+## 🛠 Development
+
+### Adding New Documentation
+
+1. **Create new files** in the appropriate directory
+2. **Update sidebar** in `sidebars.ts` to include new pages
+3. **Add frontmatter** with proper metadata:
+
+```markdown
+---
+sidebar_position: 1
+title: Your Page Title
+---
+
+# Your Page Title
+
+Content goes here...
+```
+
+### Styling Guidelines
+
+- Use **bold** for important concepts
+- Use `code` for technical terms and commands
+- Use ```yaml for configuration examples
+- Use ```javascript for code examples
+- Use callouts for tips, warnings, and notes:
+
+```markdown
+:::tip Pro Tip
+This is a helpful tip!
+:::
+
+:::warning Important
+This is a warning!
+:::
+
+:::info Note
+This is an informational note.
+:::
+```
+
+### Images and Assets
+
+- Store images in `static/img/`
+- Use relative paths: `/img/your-image.png`
+- Optimize images for web (compress PNGs, use WebP when possible)
+
+## 🚀 Deployment
+
+### GitHub Pages
+
+```bash
+# Deploy to GitHub Pages
+pnpm deploy
+```
+
+### Other Platforms
+
+The built site is in the `build/` directory and can be deployed to any static hosting service:
+
+- Netlify
+- Vercel
+- AWS S3
+- Cloudflare Pages
+
+## 📝 Contributing
+
+1. **Fork** the repository
+2. **Create** a feature branch
+3. **Make** your changes
+4. **Test** locally with `pnpm start`
+5. **Submit** a pull request
+
+### Documentation Standards
+
+- **Clear and concise** - Write for developers who are new to the platform
+- **Step-by-step** - Break complex processes into numbered steps
+- **Examples** - Include practical code examples
+- **Troubleshooting** - Anticipate common issues and provide solutions
+- **Consistent** - Follow established patterns and naming conventions
+
+## 🔧 Configuration
+
+### Docusaurus Config
+
+Main configuration is in `docusaurus.config.ts`:
+
+- Site metadata
+- Navigation
+- Theme customization
+- Plugin configuration
+
+### Sidebar Configuration
+
+Edit `sidebars.ts` to organize documentation structure:
+
+```typescript
+const sidebars: SidebarsConfig = {
+  tutorialSidebar: [
+    'intro',
+    'quick-start',
+    {
+      type: 'category',
+      label: 'Getting Started',
+      items: [
+        'tutorial-basics/create-client-credentials',
+        // ... more items
+      ],
+    },
+  ],
+};
+```
+
+## 📊 Analytics
+
+The site uses Google Analytics (if configured) to track usage and improve documentation.
+
+## 🤝 Support
+
+- **Documentation Issues**: Open an issue in this repository
+- **Community**: Join our [Discord community](https://discord.gg/a9qkpVxPnF)
+
+## 📄 License
+
+This documentation is licensed under the same terms as the main Webshot Archive project.
