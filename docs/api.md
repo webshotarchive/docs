@@ -1,61 +1,189 @@
 ---
 sidebar_position: 4
-title: API
+title: API Reference
 ---
 
-## Github Actions
+# API Reference
 
-:::tip Before you continue
-Make sure you [create client credentials](/docs/tutorial-basics/create-client-credentials) for your project and save to github secrets.
-:::
+Complete reference for the Webshot Archive API and GitHub Action.
 
-### Upload Images
+## GitHub Action
 
-Upload images to the Webshot Archive using `webshotarchive/github-action` available at [https://github.com/webshotarchive/github-action](https://github.com/webshotarchive/github-action) and on the [Github Marketplace](https://github.com/webshotarchive/github-action)
+The Webshot Archive GitHub Action is the primary way to upload screenshots and generate visual comparisons in your CI/CD pipeline.
 
-#### Parameters
+:::tip Prerequisites
+Before using the GitHub Action, make sure you have:
 
-| Parameter                  | Type    | Required | Default (Pull Request)                      | Default (Push)               | Description                                      |
-| -------------------------- | ------- | -------- | ------------------------------------------- | ---------------------------- | ------------------------------------------------ |
-| screenshotsFolder          | string  | Yes      | -                                           | -                            | The folder containing the screenshots to upload. |
-| clientId                   | string  | Yes      | -                                           | -                            | Your client ID.                                  |
-| clientSecret               | string  | Yes      | -                                           | -                            | Your client secret.                              |
-| projectId                  | string  | Yes      | -                                           | -                            | The Webshot Archive projectId.                   |
-| failedTestPattern          | string  | no       | "failed"                                    | "failed"                     | A regular expression to match failed tests.      |
-| commitSha                  | string  | No       | `${{github.event.pull_request.head.sha }}`  | `${{ github.event.after }}`  | The commit SHA represented in the screenshot     |
-| compareCommitSha           | string  | No       | `${{ github.event.pull_request.base.sha }}` | `${{ github.event.before }}` | The commit SHA to compare with.                  |
-| branchName                 | string  | No       | `${{ github.head_ref }}`                    | `${GITHUB_REF##*/}`          | The branch associated with the screenshot.       |
-| mergedBranch               | string  | No       | -                                           | \* see below                 | The branch that was merged.                      |
-| comment                    | boolean | No       | true                                        | false                        | Whether to comment on the PR.                    |
-| tags                       | string  | No       | \* see below                                | \* see below                 | Tags to add to the screenshots.                  |
-| compareBranch (deprecated) | string  | No       | -                                           | -                            | The branch to compare against.                   |
+- [Created client credentials](./tutorial-basics/create-client-credentials)
+- [Set up your project](./tutorial-webshotarchive-ui/project)
+- [Added secrets to your repository](./tutorial-basics/create-client-credentials#step-6-add-credentials-to-github-repository-secrets)
+  :::
 
-##### Notes
-
-- `failedTestPattern`: The `failedTestPattern` is used to match filenames of the failed tests in the screenshot. Different test runners will name the files differently.
-- `tags`: The tags logic is handled by the Webshot Archive API [here](https://github.com/webshotarchive/github-action/blob/main/src/main.js#L194-L200). Key points:
-  - images ending in (failed).png get `failed` tag.
-  - images with title tags-[tag1, tag2, tag3] get the tags `tag1`, `tag2`, `tag3`.
-
-#### Example Implementation
+### Basic Usage
 
 ```yaml
-- name: WebshotArchive Action
-  uses: toshimoto821/toshi-action@v0.0.3
-  env:
-    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+- name: Upload Screenshots
+  uses: webshotarchive/github-action@v1.0.5
   with:
-    screenshotsFolder: dist/cypress
-    projectId: ${{secrets.WEBSHOT_ARCHIVE_PROJECT_ID}}
+    screenshotsFolder: cypress/screenshots
     clientId: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_ID }}
     clientSecret: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_SECRET }}
+    projectId: ${{ secrets.WEBSHOT_ARCHIVE_PROJECT_ID }}
 ```
 
-#### Error Handling
+### Action Parameters
 
-Errors will be returned as a string in the `error` field of the response.
+| Parameter           | Type    | Required | Default                                                                              | Description                                     |
+| ------------------- | ------- | -------- | ------------------------------------------------------------------------------------ | ----------------------------------------------- |
+| `screenshotsFolder` | string  | Yes      | -                                                                                    | Path to folder containing screenshots to upload |
+| `clientId`          | string  | Yes      | -                                                                                    | Your Webshot Archive client ID                  |
+| `clientSecret`      | string  | Yes      | -                                                                                    | Your Webshot Archive client secret              |
+| `projectId`         | string  | Yes      | -                                                                                    | Your Webshot Archive project ID                 |
+| `failedTestPattern` | string  | No       | `"failed"`                                                                           | Regex pattern to match failed test screenshots  |
+| `commitSha`         | string  | No       | `${{github.event.pull_request.head.sha}}` (PR)<br/>`${{github.event.after}}` (Push)  | Commit SHA for the current screenshots          |
+| `compareCommitSha`  | string  | No       | `${{github.event.pull_request.base.sha}}` (PR)<br/>`${{github.event.before}}` (Push) | Commit SHA to compare against                   |
+| `branchName`        | string  | No       | `${{github.head_ref}}` (PR)<br/>`${GITHUB_REF##*/}` (Push)                           | Branch name for the screenshots                 |
+| `mergedBranch`      | string  | No       | -                                                                                    | Branch that was merged (for merge events)       |
+| `comment`           | boolean | No       | `true` (PR)<br/>`false` (Push)                                                       | Whether to comment on the PR                    |
+| `tags`              | string  | No       | Auto-generated                                                                       | Tags to add to screenshots                      |
+| `compareBranch`     | string  | No       | -                                                                                    | **Deprecated**: Use `compareCommitSha` instead  |
 
-For greater debugging information, you can enable debug logs by setting the `ACTIONS_STEP_DEBUG` environment variable to `true`. This will output the details of the response, including the `error` and `metadata` fields.
+### Parameter Details
+
+#### Required Parameters
+
+**`screenshotsFolder`** - Path to the folder containing your screenshots
+
+- **Cypress**: `cypress/screenshots/`
+- **Playwright**: `test-results/` or custom path
+- **Selenium**: `screenshots/`
+
+**`clientId` & `clientSecret`** - Your API credentials
+
+- Get these from your [account settings](https://www.webshotarchive.com/account#account-users)
+- Store as GitHub secrets for security
+
+**`projectId`** - Your Webshot Archive project ID
+
+- Found in your project dashboard
+- Each project has a unique ID
+
+#### Optional Parameters
+
+**`failedTestPattern`** - Regex to identify failed test screenshots
+
+- Default: `"failed"`
+- Examples: `"error"`, `"failure"`, `"(failed)"`
+
+**`commitSha` & `compareCommitSha`** - Git commit references
+
+- Automatically set based on GitHub event context
+- Override for custom comparison logic
+
+**`comment`** - Whether to post PR comments
+
+- `true` for pull requests (default)
+- `false` for push events (default)
+
+**`tags`** - Custom tags for screenshots
+
+- Auto-generated based on filename patterns
+- Manual tags: `"mobile,desktop,homepage"`
+
+### Tag Generation Logic
+
+The action automatically generates tags based on:
+
+1. **Failed tests**: Files ending in `(failed).png` get `failed` tag
+2. **Custom tags**: Files with `tags-[tag1,tag2,tag3]` in filename get those tags
+3. **Manual tags**: Tags specified in the `tags` parameter
+
+#### Basic Configuration
+
+```yaml
+- name: Upload Screenshots
+  uses: webshotarchive/github-action@v1.0.5
+  with:
+    screenshotsFolder: cypress/screenshots
+    clientId: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_ID }}
+    clientSecret: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_SECRET }}
+    projectId: ${{ secrets.WEBSHOT_ARCHIVE_PROJECT_ID }}
+```
+
+#### Advanced Configuration
+
+```yaml
+- name: Upload with Custom Settings
+  uses: webshotarchive/github-action@v1.0.5
+  with:
+    screenshotsFolder: test-results
+    clientId: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_ID }}
+    clientSecret: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_SECRET }}
+    projectId: ${{ secrets.WEBSHOT_ARCHIVE_PROJECT_ID }}
+    failedTestPattern: 'error'
+    tags: 'mobile,desktop,ci'
+    comment: true
+```
+
+#### Environment-Specific Configuration
+
+```yaml
+- name: Upload Staging Screenshots
+  uses: webshotarchive/github-action@v1.0.5
+  with:
+    screenshotsFolder: cypress/screenshots
+    clientId: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_ID }}
+    clientSecret: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_SECRET }}
+    projectId: ${{ secrets.WEBSHOT_ARCHIVE_PROJECT_ID }}
+    tags: 'staging,automated'
+    comment: false # Don't comment on staging builds
+```
+
+### Error Handling
+
+The action provides detailed error information when things go wrong:
+
+#### Common Error Responses
+
+**Authentication Error:**
+
+```json
+{
+  "error": "Invalid client credentials"
+}
+```
+
+**Project Not Found:**
+
+```json
+{
+  "error": "Project not found or access denied"
+}
+```
+
+**Screenshots Not Found:**
+
+```json
+{
+  "error": "No screenshots found in specified folder"
+}
+```
+
+#### Debug Mode
+
+Enable debug logging for troubleshooting:
+
+```yaml
+- name: Upload with Debug
+  uses: webshotarchive/github-action@v1.0.5
+  env:
+    ACTIONS_STEP_DEBUG: true # Enable detailed logging
+  with:
+    screenshotsFolder: cypress/screenshots
+    clientId: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_ID }}
+    clientSecret: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_SECRET }}
+    projectId: ${{ secrets.WEBSHOT_ARCHIVE_PROJECT_ID }}
+```
 
 ```json
 {

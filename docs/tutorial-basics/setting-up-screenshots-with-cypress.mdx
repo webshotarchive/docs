@@ -7,226 +7,362 @@ import Image from '@site/src/components/Image';
 
 # Uploading Screenshots from e2e tests
 
-After setting up the API User ([Create Client Credentials](/docs/tutorial-basics/create-client-credentials)), Github Actions can capture screenshots with [Cypress](https://cypress.io/), [Playwright](https://playwright.dev/), or other e2e testing tools. The Webshot Archive Github Action will upload the screenshots to the Webshot Archive API and comment on the Pull Request showing the image and diffs (if any).
+After setting up the API User ([Create Client Credentials](/docs/tutorial-basics/create-client-credentials)), GitHub Actions can capture screenshots with [Cypress](https://cypress.io/), [Playwright](https://playwright.dev/), or other e2e testing tools. The Webshot Archive GitHub Action will upload the screenshots to the Webshot Archive API and comment on the Pull Request showing the image and diffs (if any).
 
-This section of the tutorial will guide you through:
+## Prerequisites
 
-- Setting up cypress.io to capture screenshots
-- Running the cypress.io tests with the Github Action
-- Validating the screenshots on the Github PR
-- Running the Github Action on push to the `main` branch
+Before starting this tutorial, ensure you have:
 
-You can find the Github Action code that run on pull request [here](https://github.com/webshotarchive/docs/blob/main/.github/workflows/pr.yml#L36-L44) and the Github Action code that run on push to the `main` branch [here](https://github.com/webshotarchive/docs/blob/main/.github/workflows/main.yml#L38-L46).
+- A GitHub repository with GitHub Actions enabled
+- [Created Client Credentials](/docs/tutorial-basics/create-client-credentials) for the Webshot Archive API
+- A project set up in the [Webshot Archive dashboard](https://www.webshotarchive.com/projects)
+- Node.js and npm/pnpm installed locally
+
+## What you'll learn
+
+This tutorial will guide you through:
+
+- Setting up Cypress to capture screenshots
+- Running Cypress tests with GitHub Actions
+- Configuring the Webshot Archive GitHub Action
+- Validating screenshots on GitHub PRs
+- Setting up automated screenshot comparison
+
+## Quick Start
+
+If you already have Cypress or another test runner configured, you can skip to [Step 7: Configure GitHub Actions](#step-7---configure-github-actions).
 
 :::tip
-For comparision screenshots you will need to have a main branch or base branch with the screenshots already uploaded to the Webshot Archive API. Webshot Archive stores images with their commit hash so if you want to compare screenshots from a PR to the main branch, you will need to have the screenshots from the main branch saved. Your first PR will not have any screenshots to compare to, thats ok. After you merge your first PR, the main branch screenshots will be uploaded to the Webshot Archive API (using the Github Action below) and you will be able to compare screenshots from future PRs to the main branch.
+For comparison screenshots, you need a main branch with screenshots already uploaded to the Webshot Archive API. Your first PR won't have comparisons, but after merging, future PRs will show diffs against the main branch.
 :::
 
 ## Cypress Configuration
 
-:::tip
-Skip to [step 6](#step-6---configure--run-the-github-actions) if you are using a different e2e testing tool or already have a cypress configuration.
-:::
-
 ### Step 1 - Install Cypress
 
-In your project directory, run the following command to install Cypress.
+Install Cypress as a development dependency:
 
 ```bash
-npm install cypress --save-dev
+pnpm add -D cypress
 ```
 
-### Step 2 - Add Cypress Configuration
+:::note
+This tutorial uses `pnpm` as the package manager. If you're using `npm`, replace `pnpm` with `npm` in all commands.
+:::
 
-running `npx cypress open` will create a `cypress.config.ts` file in your project directory along with a lot of other files to get started.
+### Step 2 - Initialize Cypress
+
+Run the Cypress setup command to create the initial configuration:
+
+```bash
+npx cypress open
+```
+
+This will create a `cypress.config.ts` file and the necessary folder structure.
+
+### Step 3 - Configure Cypress
+
+Update your `cypress.config.ts` file:
 
 ```ts title="cypress.config.ts"
 import { defineConfig } from 'cypress';
 
 export default defineConfig({
   e2e: {
-    baseUrl: 'http://localhost:3000', // update according to how your test run
+    baseUrl: 'http://localhost:3000', // Update to match your development server
     screenshotsFolder: 'dist/cypress',
+    video: false, // Disable video recording to speed up tests
+    viewportWidth: 1280,
+    viewportHeight: 720,
   },
 });
 ```
 
-### Step 3 - Add Cypress Test
+### Step 4 - Create a Test File
 
-:::tip
-cypress.io has [a great tutorial](https://docs.cypress.io/app/end-to-end-testing/writing-your-first-end-to-end-test) on how to write tests and get started with Cypress.
-:::
+Create your first screenshot test:
 
-```ts title="cypress/e2e/1-getting-started/todo.cy.js"
-describe('Homepage', () => {
-  it('should have the correct title', () => {
+```ts title="cypress/e2e/screenshots.cy.ts"
+describe('Screenshot Tests', () => {
+  it('should capture homepage screenshot', () => {
     cy.visit('/');
-    cy.get('<some selector>').should('have.text', '<some text>');
-    cy.screenshot({
+
+    // Wait for any animations or loading to complete
+    cy.wait(1000);
+
+    // Capture full page screenshot
+    cy.screenshot('homepage', {
+      capture: 'fullPage',
+    });
+  });
+
+  it('should capture mobile viewport screenshot', () => {
+    cy.viewport('iphone-x');
+    cy.visit('/');
+
+    cy.wait(1000);
+
+    cy.screenshot('homepage-mobile', {
       capture: 'fullPage',
     });
   });
 });
 ```
 
-### Step 4 - Setup npm script
+### Step 5 - Setup Build Scripts
 
-You can use the `start-server-and-test` package to start the server and run the cypress tests locally and/or with Github Actions as shown below:
+Add the necessary scripts to your `package.json`:
 
 ```json title="package.json"
-"scripts": {
-  "cypress:e2e": "npx start-server-and-test serve http://localhost:3000 'cypress run --e2e'"
+{
+  "scripts": {
+    "dev": "your-dev-server-command",
+    "build": "your-build-command",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run --e2e",
+    "cypress:e2e": "start-server-and-test dev http://localhost:3000 'cypress run --e2e'"
+  },
+  "devDependencies": {
+    "cypress": "^13.0.0",
+    "start-server-and-test": "^2.0.0"
+  }
 }
 ```
 
 :::tip
-The [`start-server-and-test`](https://www.npmjs.com/package/start-server-and-test) package is used to start the server and run the cypress tests. You can install it locally as a dev dependency rather than using npx if you prefer.
+The `start-server-and-test` package automatically starts your development server before running tests. Install it with `pnpm add -D start-server-and-test`.
 :::
 
-Alternatively, on Github Actions you can use the `cypress-io/github-action` to run the cypress tests. If you are new to Cypress or Github Actions, I recommend reviewing this [tutorial](https://docs.cypress.io/app/continuous-integration/github-actions) to get started and using the `cypress-io/github-action`. The important part is that cypress runs on Github Actions and creates screenshots to upload to the Webshot Archive API.
+### Step 6 - Test Locally
 
-### Step 5 - Validate setup locally
+Run your tests locally to verify everything works:
 
 ```bash
-npm run cypress:e2e
+pnpm run cypress:e2e
 ```
 
-After running the command, you should see the screenshots in the `dist/cypress` folder. This folder is used in the Github Action to upload the screenshots to the Webshot Archive API. You should add the `dist` folder to your `.gitignore` file so it is not committed to the repository.
+After running, check that screenshots are generated in the `dist/cypress` folder. Add this folder to your `.gitignore`:
 
-### Step 6 - Configure & run the Github Actions
+```gitignore title=".gitignore"
+# Cypress screenshots
+dist/cypress/
+cypress/screenshots/
+cypress/videos/
+```
 
-You should have at least two github actions workflows that upload the screenshots to the Webshot Archive API. One for pull requests and one for pushes to the `main` branch.
-Every time you run the Github Action, it will upload the screenshots to the Webshot Archive API and associate the screenshot with the commit hash. When you raise a new PR, the Github Action will compare the screenshot found in the base branch.
+## GitHub Actions Configuration
 
-```yaml title=".github/workflows/pr.yml" {36-44} showLineNumbers
+### Step 7 - Configure GitHub Actions
+
+Create two workflow files for handling screenshots on pull requests and main branch pushes.
+
+> **Note:** You will need your `projectId` for the GitHub Action configuration.  
+> You can retrieve your Project ID from the [Webshot Archive Projects page](https://webshotarchive.com/projects).  
+> See the highlighted area in the screenshot below:
+>
+> ![@project-id.png](/img/screenshots/gha-project-id.png)
+
+#### Pull Request Workflow
+
+```yaml title=".github/workflows/pr-screenshots.yml"
 name: Pull Request Screenshots
 
 on:
   pull_request:
-
-permissions:
-  actions: read
-  contents: read
-  issues: write
-  pull-requests: write
+    branches: [main, master]
 
 jobs:
-  main:
+  screenshots:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      # Cache node_modules
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Install dependencies using pnpm
-        run: npm ci
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
 
-      - name: Build
-        run: npm run build
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-      - name: Screenshots
-        run: npm run cypress:e2e
+      - name: Build application
+        run: pnpm run build
+
+      - name: Run Cypress tests
+        run: pnpm run cypress:run
         continue-on-error: true
         id: screenshots
 
-      - name: WebshotArchive Action
-        uses: webshotarchive/github-action@v0.4.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          screenshotsFolder: dist/cypress
-          clientId: ${{ secrets.CLIENT_ID }}
-          clientSecret: ${{ secrets.CLIENT_SECRET }}
-          projectId: ${{secrets.PROJECT_ID}}
-
-      - name: Check if screenshots failed
-        if: steps.screenshots.outcome == 'failure'
-        run: exit 1
-```
-
-:::tip
-The `continue-on-error: true` option is used to allow the Github Action to continue running even if the screenshots fail. This is useful if you want to run the Github Action, upload the screenshots to the Webshot Archive API and comment on the PR with the results then fail the PR if the screenshots fail.
-:::
-
-```yaml title=".github/workflows/main.yml" {38-46} showLineNumbers
-name: Main Branch Screenshots
-
-on:
-  push:
-    branches:
-      - main
-
-permissions:
-  actions: read
-  contents: read
-  issues: write
-  pull-requests: write
-
-jobs:
-  main:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      # Cache node_modules
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Install dependencies using pnpm
-        run: npm ci
-
-      - name: Build
-        run: npm run build
-
-      - name: Screenshots
-        run: npm run cypress:e2e
-        continue-on-error: true
-        id: screenshots
-
-      - name: WebshotArchive Action
+      - name: Upload screenshots to Webshot Archive
         uses: webshotarchive/github-action@v1.0.5
         with:
           screenshotsFolder: dist/cypress
           clientId: ${{ secrets.CLIENT_ID }}
           clientSecret: ${{ secrets.CLIENT_SECRET }}
-          projectId: ${{secrets.PROJECT_ID}}
+          projectId: # Add your project ID
 
-      - name: Check if screenshots failed
+      - name: Fail if screenshots failed
         if: steps.screenshots.outcome == 'failure'
         run: exit 1
 ```
 
-After the PR is merged, the above action should run and the main branch screenshots will be generated and uploaded to the Webshot Archive API.
+#### Main Branch Workflow
 
-#### Github Action Inputs
+```yaml title=".github/workflows/main-screenshots.yml"
+name: Main Branch Screenshots
 
-- `screenshotsFolder`: The folder where the screenshots are saved.
-- `clientId`: The client id of the client you want to upload the screenshots to (refer to [Create Client Credentials](/docs/tutorial-basics/create-client-credentials)).
-- `clientSecret`: The client secret of the client you want to upload the screenshots to (refer to [Create Client Credentials](/docs/tutorial-basics/create-client-credentials)).
-- `projectId`: The id of the project you want to upload the screenshots to (Refer to the [projects dashboard](https://www.webshotarchive.com/projects)).
-  ![Project ID](/img/screenshots/gha-project-id.png)
-- `env.GITHUB_TOKEN`: The Github token for the Github Actions job. This is used to comment on the PR with the screenshot results. You may omit this if you set comments to false on the with options.
+on:
+  push:
+    branches: [main, master]
 
-There are additional advanced options you can use to configure the Github Action. Refer to the [API Docs](/docs/api) and [Recipes](/docs/category/recipes) for more details.
+jobs:
+  screenshots:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-### Step 7 - Validate the Github PR
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-Once the action runs, you should see a comment with the new screenshots in the PR as shown below and on [this PR](https://github.com/webshotarchive/docs/pull/1).
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 8
 
-[![Github PR Screenshots](/img/screenshots/gha-screenshot-new.png)](/img/screenshots/gha-screenshot-new.png)
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
 
-Once merged, the main branch screenshots will be uploaded to the Webshot Archive API and you will be able to see a comparison of the screenshots from the base or main branch and the PR on any new PRs raised (as shown below and in [this pr](https://github.com/webshotarchive/docs/pull/2)).
+      - name: Build application
+        run: pnpm run build
+
+      - name: Run Cypress tests
+        run: pnpm run cypress:run
+        continue-on-error: true
+        id: screenshots
+
+      - name: Upload screenshots to Webshot Archive
+        uses: webshotarchive/github-action@v1.0.5
+        with:
+          screenshotsFolder: dist/cypress
+          clientId: ${{ secrets.CLIENT_ID }}
+          clientSecret: ${{ secrets.CLIENT_SECRET }}
+          projectId: # Add your project ID
+
+      - name: Fail if screenshots failed
+        if: steps.screenshots.outcome == 'failure'
+        run: exit 1
+```
+
+### Step 8 - Configure GitHub Secrets
+
+Add the following secrets to your GitHub repository (Settings → Secrets and variables → Actions):
+
+- `CLIENT_ID`: Your Webshot Archive client ID
+- `CLIENT_SECRET`: Your Webshot Archive client secret
+- `PROJECT_ID`: Your Webshot Archive project ID
+
+## GitHub Action Configuration Options
+
+### Required Parameters
+
+| Parameter           | Description                           | Example        |
+| ------------------- | ------------------------------------- | -------------- |
+| `screenshotsFolder` | Path to folder containing screenshots | `dist/cypress` |
+| `clientId`          | Your Webshot Archive client ID        | `123...`       |
+| `clientSecret`      | Your Webshot Archive client secret    | `456...`       |
+| `projectId`         | Your Webshot Archive project ID       | `789...`       |
+
+### Optional Parameters
+
+| Parameter  | Description                | Default |
+| ---------- | -------------------------- | ------- |
+| `comments` | Enable/disable PR comments | `true`  |
+
+:::tip
+For advanced configuration options, see the [API Documentation](/docs/api).
+:::
+
+## Webshot Archive Github action
+
+### Step 9 - Install the Github Action
+
+In order for Webshot Archive to be able to comment on the PR you will need to [install the Webshot Archive GitHub Action](https://github.com/apps/webshot-archive-github-action/installations/new).
+This gives Webshot Archive the following permissions:
+
+- `Read and write access to pull requests`
+- `Read access to metadata`
+
+## Testing Your Setup
+
+### Step 10 - Create a Test PR
+
+1. Create a new branch and make a small change
+2. Push the branch and create a pull request
+3. The GitHub Action will automatically run and upload screenshots
+4. Check the PR comments for screenshot results
+
+### Expected Results
+
+#### First PR (No Comparison)
+
+Your first PR will show new screenshots without comparisons:
+
+[![GitHub PR Screenshots](/img/screenshots/gha-screenshot-new.png)](/img/screenshots/gha-screenshot-new.png)
+
+#### Subsequent PRs (With Comparison)
+
+After merging your first PR, future PRs will show comparisons with the main branch:
 
 <Image
   src="/img/screenshots/gha-screenshot-compare.png"
-  alt="Github PR Diff"
+  alt="GitHub PR Diff"
   loading="eager"
 />
+
+## Troubleshooting
+
+### Common Issues
+
+**Screenshots not uploading:**
+
+- Verify all GitHub secrets are correctly set
+- Check that the `screenshotsFolder` path matches your Cypress configuration
+- Ensure your project ID is correct in the Webshot Archive dashboard
+
+**Tests failing in CI:**
+
+- Add `continue-on-error: true` to the screenshot step to see results even if tests fail
+- Check that your application builds and runs correctly in the CI environment
+- Verify your `baseUrl` in Cypress config matches your CI setup
+
+**No comparison screenshots:**
+
+- Ensure the main branch workflow runs successfully after merging your first PR
+- Check that the same `projectId` is used in both workflows
+
+### Getting Help
+
+- Post a question on [Discord](https://discord.gg/a9qkpVxPnF).
+- Check the [API Documentation](/docs/api) for advanced configuration
+
+## Next Steps
+
+Now that you have screenshot testing set up, consider:
+
+- Adding more comprehensive test scenarios
+- Configuring different viewport sizes for responsive testing
+- Setting up visual regression testing workflows
+- Integrating with your existing CI/CD pipeline
