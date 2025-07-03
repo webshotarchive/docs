@@ -257,7 +257,7 @@ jobs:
 - This is normal for the first run - there's nothing to compare against
 - Make a visual change and create another PR to see diffs
 
-### Getting Help
+### Getting Help Please See Diff
 
 - Check the [troubleshooting guide](./troubleshooting)
 - Join our [Discord community](https://discord.gg/a9qkpVxPnF)
