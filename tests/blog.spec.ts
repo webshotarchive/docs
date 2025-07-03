@@ -59,7 +59,7 @@ test('test page', async ({ page }, testInfo) => {
   await page.waitForTimeout(1000);
 
   // await expect(page.getByRole('img', { name: 'Request Access' })).toBeVisible();
-
+  // build
   const screenshotPath = testInfo.outputPath('test-page.png');
   await page.screenshot({ path: screenshotPath, fullPage: true });
 });
