@@ -187,7 +187,7 @@ jobs:
         continue-on-error: true
 
       - name: Upload to Webshot Archive
-        uses: webshotarchive/github-action@v1.0.5
+        uses: webshotarchive/github-action@v1.0.6
         with:
           screenshotsFolder: cypress/screenshots
           clientId: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_ID }}
