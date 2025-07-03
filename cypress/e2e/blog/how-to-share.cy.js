@@ -7,4 +7,10 @@ describe('Blog Post tags-[blog]', () => {
       capture: 'fullPage',
     });
   });
+  it('test page', () => {
+    cy.visit('/docs/tutorial-basics/test');
+    cy.screenshot({
+      capture: 'fullPage',
+    });
+  });
 });
