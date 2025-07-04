@@ -202,7 +202,7 @@ jobs:
         id: screenshots
 
       - name: Upload screenshots to Webshot Archive
-        uses: webshotarchive/github-action@v1.0.5
+        uses: webshotarchive/github-action@v1.1.0
         with:
           screenshotsFolder: dist/cypress
           clientId: ${{ secrets.CLIENT_ID }}
@@ -254,7 +254,7 @@ jobs:
         id: screenshots
 
       - name: Upload screenshots to Webshot Archive
-        uses: webshotarchive/github-action@v1.0.5
+        uses: webshotarchive/github-action@v1.1.0
         with:
           screenshotsFolder: dist/cypress
           clientId: ${{ secrets.CLIENT_ID }}

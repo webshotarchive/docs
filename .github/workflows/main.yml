@@ -39,7 +39,7 @@ jobs:
         id: screenshots
 
       - name: WebshotArchive Action
-        uses: webshotarchive/github-action@v0.4.0
+        uses: webshotarchive/github-action@v1.1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:

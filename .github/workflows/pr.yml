@@ -38,7 +38,7 @@ jobs:
 
       - name: WebshotArchive Action
         if: github.actor != 'dependabot[bot]'
-        uses: webshotarchive/github-action@v1.0.5
+        uses: webshotarchive/github-action@v1.1.0
         with:
           screenshotsFolder: dist/playwright
           clientId: ${{ secrets.WA_CLIENT_ID }}

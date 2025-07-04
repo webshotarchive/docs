@@ -72,7 +72,7 @@ jobs:
           NEXT_TELEMETRY_DISABLED: 1
 
       - name: WebshotArchive Action
-        uses: webshotarchive/github-action@v1.0.5
+        uses: webshotarchive/github-action@v1.1.0
         with:
           screenshotsFolder: .next/cypress
           clientId: ${{ vars.WEBSHOT_CLIENT_ID }}

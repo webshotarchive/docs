@@ -316,7 +316,7 @@ Common issues and their solutions when using Webshot Archive.
 
    ```yaml
    - name: Upload with retry
-     uses: webshotarchive/github-action@v1.0.5
+     uses: webshotarchive/github-action@v1.1.0
      with:
        screenshotsFolder: cypress/screenshots
        # ... other config
@@ -330,7 +330,7 @@ Common issues and their solutions when using Webshot Archive.
 
 3. **Use different action version:**
    ```yaml
-   uses: webshotarchive/github-action@v1.0.5 # Try latest version
+   uses: webshotarchive/github-action@v1.1.0 # Try latest version
    ```
 
 ## Debugging Tips
@@ -339,7 +339,7 @@ Common issues and their solutions when using Webshot Archive.
 
 ```yaml
 - name: Upload with debug
-  uses: webshotarchive/github-action@v1.0.5
+  uses: webshotarchive/github-action@v1.1.0
   env:
     ACTIONS_STEP_DEBUG: true # Enable debug output
   with:
