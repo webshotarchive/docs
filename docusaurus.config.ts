@@ -72,13 +72,19 @@ const config: Config = {
         src: 'img/logo.svg?v=1',
       },
       items: [
-        { to: '/docs/api', label: 'API', position: 'left' },
+        {
+          to: '/docs/quick-start',
+          label: 'Quick Start',
+          position: 'left',
+        },
+
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'Tutorial',
         },
+        { to: '/docs/api', label: 'API', position: 'left' },
         { to: '/blog', label: 'Blog', position: 'left' },
         {
           href: 'https://github.com/webshotarchive/docs',

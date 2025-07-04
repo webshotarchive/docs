@@ -6,7 +6,7 @@ const sidebars: SidebarsConfig = {
     'quick-start',
     {
       type: 'category',
-      label: 'Getting Started',
+      label: 'In Depth Guide',
       items: [
         'tutorial-basics/create-client-credentials',
         'tutorial-basics/setting-up-screenshots-with-cypress',
