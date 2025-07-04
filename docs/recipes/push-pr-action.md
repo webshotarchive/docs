@@ -75,7 +75,7 @@ jobs:
         id: screenshots
 
       - name: WebshotArchive Action
-        uses: webshotarchive/github-action@v1.1.0
+        uses: webshotarchive/github-action@v1.1.1
         with:
           screenshotsFolder: dist/cypress
           clientId: ${{ secrets.CLIENT_ID }}
