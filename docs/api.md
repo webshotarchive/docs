@@ -23,7 +23,7 @@ Before using the GitHub Action, make sure you have:
 
 ```yaml
 - name: Upload Screenshots
-  uses: webshotarchive/github-action@v1.0.6
+  uses: webshotarchive/github-action@v1.1.0
   with:
     screenshotsFolder: cypress/screenshots
     clientId: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_ID }}
@@ -102,7 +102,7 @@ The action automatically generates tags based on:
 
 ```yaml
 - name: Upload Screenshots
-  uses: webshotarchive/github-action@v1.0.6
+  uses: webshotarchive/github-action@v1.1.0
   with:
     screenshotsFolder: cypress/screenshots
     clientId: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_ID }}
@@ -114,7 +114,7 @@ The action automatically generates tags based on:
 
 ```yaml
 - name: Upload with Custom Settings
-  uses: webshotarchive/github-action@v1.0.6
+  uses: webshotarchive/github-action@v1.1.0
   with:
     screenshotsFolder: test-results
     clientId: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_ID }}
@@ -129,7 +129,7 @@ The action automatically generates tags based on:
 
 ```yaml
 - name: Upload Staging Screenshots
-  uses: webshotarchive/github-action@v1.0.6
+  uses: webshotarchive/github-action@v1.1.0
   with:
     screenshotsFolder: cypress/screenshots
     clientId: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_ID }}
@@ -175,7 +175,7 @@ Enable debug logging for troubleshooting:
 
 ```yaml
 - name: Upload with Debug
-  uses: webshotarchive/github-action@v1.0.6
+  uses: webshotarchive/github-action@v1.1.0
   env:
     ACTIONS_STEP_DEBUG: true # Enable detailed logging
   with:
