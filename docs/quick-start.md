@@ -143,6 +143,10 @@ Without installing the GitHub App, the action will still upload screenshots but 
 
 Create `.github/workflows/visual-tests.yml`:
 
+:::note Example Workflow
+This is an example workflow that assumes a typical React/Node.js setup. You'll need to adapt the commands, ports, and paths to match your specific project structure and build process.
+:::
+
 ```yaml
 name: Visual Regression Tests
 
