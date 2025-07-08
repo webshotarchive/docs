@@ -132,11 +132,12 @@ test('visual regression tests', async ({ page }) => {
 
 This gives Webshot Archive the necessary permissions to:
 
-- Read and write access to pull requests
+- Read and write access to pull requests (for commenting on pull requests)
+- React access to content (allows the app to view branches in the webshot arch)
 - Read access to metadata
 
 :::tip Required for PR Comments
-Without installing the GitHub App, the action will still upload screenshots but won't be able to comment on pull requests with visual diffs.
+Without installing the GitHub App, the action will still upload screenshots but won't be able to comment on pull requests with visual diffs or view commits / branches in the Webshot Archive UI.
 :::
 
 ## Step 6: Create GitHub Actions Workflow
@@ -235,12 +236,14 @@ jobs:
 - A comment with screenshots and visual diffs
 - Only changed components highlighted
 - Links to view full-size images
+  ![Github PR](/img/screenshots/github-comment.png)
 
 ### In Webshot Archive Dashboard
 
 - Timeline of all visual changes
 - Side-by-side comparisons
 - Filtering by branch, commit, or tags
+  ![dashboard](/img/screenshots/ui-tour-project-dashboard.png)
 
 ## Troubleshooting
 
