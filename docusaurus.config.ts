@@ -129,6 +129,14 @@ const config: Config = {
               label: 'GitHub',
               href: 'https://github.com/webshotarchive/docs',
             },
+            {
+              label: 'Privacy Policy',
+              to: '/docs/privacy-policy',
+            },
+            {
+              label: 'Terms of Service',
+              to: '/docs/terms-of-service',
+            },
           ],
         },
       ],

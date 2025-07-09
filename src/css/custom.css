@@ -58,3 +58,24 @@ article a:hover,
   color: #99ccff !important;
   text-decoration: underline;
 }
+
+/* Footer link styles */
+.footer__link-item {
+  color: rgba(255, 255, 255, 0.8) !important;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer__link-item:hover {
+  color: #ffffff !important;
+  text-decoration: none;
+}
+
+/* Dark mode footer link styles */
+[data-theme='dark'] .footer__link-item {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+[data-theme='dark'] .footer__link-item:hover {
+  color: #ffffff !important;
+}
