@@ -5,7 +5,7 @@ title: Privacy Policy
 
 # Privacy Policy
 
-**Last updated:** [Current Date]
+**Last updated:** 07/09/2025
 
 This Privacy Policy describes how Webshot Archive ("we," "us," or "our") collects, uses, and protects your information when you use our screenshot comparison service.
 
