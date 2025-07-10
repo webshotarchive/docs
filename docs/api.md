@@ -60,7 +60,7 @@ Before using the GitHub Action, make sure you have:
 
 **`clientId` & `clientSecret`** - Your API credentials
 
-- Get these from your [account settings](https://www.webshotarchive.com/account#account-users)
+- Get these from your [account settings](https://www.webshotarchive.com/account/team)
 - Store as GitHub secrets for security
 
 **`projectId`** - Your Webshot Archive project ID

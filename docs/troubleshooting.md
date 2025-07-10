@@ -34,7 +34,7 @@ Common issues and their solutions when using Webshot Archive.
 
 3. **Regenerate credentials:**
 
-   - Go to [Account Settings](https://www.webshotarchive.com/account#account-users)
+   - Go to [Account Settings](https://www.webshotarchive.com/account/team)
    - Find your service account
    - Click "View / Add Credentials" → "Create Credentials"
    - Update your GitHub secrets with the new values

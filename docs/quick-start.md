@@ -41,7 +41,7 @@ You need to create API credentials for GitHub Actions to upload screenshots.
 
 ### 3.1 Create Service Account
 
-1. Go to your [Account Settings](https://www.webshotarchive.com/account#account-users)
+1. Go to your [Account Settings](https://www.webshotarchive.com/account/team)
 2. Click **"Add User"** → **"Add Service Account User (GitHub Actions)"**
 3. Click **"Add Service Account"**
 
