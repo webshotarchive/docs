@@ -44,12 +44,6 @@ name: Pull Request Screenshots
 on:
   pull_request:
 
-permissions:
-  actions: read
-  contents: read
-  issues: write
-  pull-requests: write
-
 jobs:
   main:
     runs-on: ubuntu-latest
@@ -75,7 +69,7 @@ jobs:
         id: screenshots
 
       - name: WebshotArchive Action
-        uses: webshotarchive/github-action@v1.1.1
+        uses: webshotarchive/github-action@latest
         with:
           screenshotsFolder: dist/cypress
           clientId: ${{ secrets.CLIENT_ID }}
@@ -112,12 +106,6 @@ on:
     branches:
       - main
 
-permissions:
-  actions: read
-  contents: read
-  issues: write
-  pull-requests: write
-
 jobs:
   main:
     runs-on: ubuntu-latest
@@ -143,7 +131,7 @@ jobs:
         id: screenshots
 
       - name: WebshotArchive Action
-        uses: webshotarchive/github-action@v0.1.0
+        uses: webshotarchive/github-action@latest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:

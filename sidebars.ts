@@ -17,15 +17,7 @@ const sidebars: SidebarsConfig = {
       label: 'Recipes',
       items: ['recipes/push-pr-action'],
     },
-    {
-      type: 'category',
-      label: 'UI Guide',
-      items: [
-        'tutorial-webshotarchive-ui/account',
-        'tutorial-webshotarchive-ui/project',
-        'tutorial-webshotarchive-ui/project-settings',
-      ],
-    },
+
     'api',
     'troubleshooting',
   ],

@@ -270,13 +270,6 @@ jobs:
 - Join our [Discord community](https://discord.gg/a9qkpVxPnF)
 - Open an issue on [GitHub](https://github.com/webshotarchive/docs)
 
-## Next Steps
-
-Now that you have the basics working:
-
-- [Customize diff thresholds](./api#diff-thresholds)
-- [Explore the dashboard](./tutorial-webshotarchive-ui/project)
-
 ---
 
 **Need help?** [Join our Discord](https://discord.gg/a9qkpVxPnF) or [check the troubleshooting guide](./troubleshooting).
