@@ -135,18 +135,40 @@ Webshot Archive is built for scale:
 
 ## Integration and Workflow
 
-### Playwright's Simple Setup
+### Playwright's Workflow Dilemma
 
-Playwright is straightforward to set up:
+Playwright's `.toHaveScreenshot()` creates a fundamental workflow problem: **when do you run it?**
+
+You have two problematic options:
+
+**Option 1: Developer-Controlled (Unreliable)**
 
 ```javascript
-// Basic setup
+// Developers must remember to run this locally
 await expect(page).toHaveScreenshot('my-component.png');
 ```
 
-### Webshot Archive's Rich Integration
+- Developers must manually run tests and commit screenshots
+- No guarantee they'll remember or do it consistently
+- Screenshots may be outdated or missing
+- Creates inconsistent baseline states across the team
+- **Manual Baseline Updates**: When changes are expected, developers must run `npx playwright test --update-snapshots` to create new baseline screenshots
 
-Webshot Archive integrates seamlessly with your existing screenshot workflow:
+**Option 2: Pipeline-Generated (Problematic)**
+
+```javascript
+// CI pipeline creates commits with screenshots
+await expect(page).toHaveScreenshot('my-component.png');
+```
+
+- CI creates commits, polluting Git history
+- Screenshots tied to specific pipeline runs, not code changes
+- Difficult to track which screenshots correspond to which code changes
+- Creates merge conflicts and repository bloat
+
+### Webshot Archive's Seamless Workflow
+
+Webshot Archive eliminates this timing dilemma entirely:
 
 ```javascript
 // Standard Playwright screenshot capture
@@ -154,6 +176,13 @@ await page.screenshot({ path: 'outputDir/user-profile-form.png' });
 ```
 
 Webshot Archive automatically uploads files from your `outputDir` to the centralized archive, preserving your existing workflow while adding the benefits of centralized storage and team collaboration.
+
+**Key Advantages:**
+
+- **No Timing Issues**: Screenshots are captured when tests run, regardless of where
+- **No Manual Steps**: Developers don't need to remember to run special commands
+- **No Pipeline Commits**: CI can capture screenshots without creating Git commits
+- **Consistent Baselines**: All team members see the same screenshot state
 
 ## Cost and Maintenance
 
