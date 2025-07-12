@@ -68,12 +68,7 @@ const config: Config = {
       async: true,
     },
     {
-      innerHTML: `
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-RTCZ0X2GDZ');
-      `,
+      src: '/js/gtag.js',
     },
   ],
   themeConfig: {
