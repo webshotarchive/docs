@@ -169,7 +169,7 @@ name: Pull Request Screenshots
 
 on:
   pull_request:
-    branches: [main, master]
+    branches: [main]
 
 jobs:
   screenshots:
@@ -205,8 +205,8 @@ jobs:
         uses: webshotarchive/github-action@v1.1.1
         with:
           screenshotsFolder: dist/cypress
-          clientId: ${{ secrets.CLIENT_ID }}
-          clientSecret: ${{ secrets.CLIENT_SECRET }}
+          clientId: ${{ secrets.WSA_CLIENT_ID }}
+          clientSecret: ${{ secrets.WSA_CLIENT_SECRET }}
           projectId: # Add your project ID
 
       - name: Fail if screenshots failed
@@ -257,7 +257,7 @@ jobs:
         uses: webshotarchive/github-action@v1.1.1
         with:
           screenshotsFolder: dist/cypress
-          clientId: ${{ secrets.CLIENT_ID }}
+          clientId: ${{ secrets.WSA_CLIENT_ID }}
           clientSecret: ${{ secrets.CLIENT_SECRET }}
           projectId: # Add your project ID
 

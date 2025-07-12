@@ -5,7 +5,7 @@ authors: [toshimoto821]
 tags: [developer, webshot-archive-ui, testing, visual-regression]
 ---
 
-When it comes to visual regression testing, Playwright's `.toHaveScreenshot()` method has become a popular choice for developers. However, there's a growing need for more sophisticated screenshot management that goes beyond simple file-based storage. This is where Webshot Archive comes in, offering a centralized, team-friendly approach to visual testing.
+When it comes to visual regression testing, [Playwright's `.toHaveScreenshot()`](https://playwright.dev/docs/test-snapshots) method has become a popular choice for developers. However, there's a growing need for more sophisticated screenshot management that goes beyond simple file-based storage. This is where Webshot Archive comes in, offering a centralized, team-friendly approach to visual testing.
 
 ## The Core Difference: Centralized vs Distributed
 
@@ -14,8 +14,9 @@ When it comes to visual regression testing, Playwright's `.toHaveScreenshot()` m
 Playwright stores screenshot files directly in your Git repository alongside your test code. While this keeps everything in one place, it comes with several limitations:
 
 - **Repository Bloat**: Screenshots accumulate over time, making your repository larger and slower to clone
-- **Git History Pollution**: Every screenshot change creates a new commit, cluttering your Git history
 - **Limited Collaboration**: Screenshots are tied to specific branches and commits, making it hard to share across teams
+- **Required Manual Step**: Every time a developer checks in code that affects UI, they must remember to run the `--update-snapshots` command to update baseline screenshots
+- **Manual Git Navigation**: To view screenshots across history, you must checkout branches one at a time and navigate through commits manually
 
 ### Webshot Archive's Approach
 
@@ -24,6 +25,7 @@ Webshot Archive provides a centralized, hosted repository for all your visual re
 - **Clean Repositories**: Keep your code repository focused on code, not binary assets
 - **Dedicated Infrastructure**: Optimized storage and retrieval for screenshot data
 - **Global Accessibility**: Team members can access screenshots regardless of their local Git state
+- **Easy Historical Viewing**: Browse and compare screenshots across commits without checking out different branches
 
 <!-- truncate -->
 
@@ -35,8 +37,8 @@ With Playwright's approach, sharing screenshots with your team requires:
 
 - Everyone to have the same Git state
 - Manual sharing of specific commits or branches
-- No built-in commenting or discussion features
 - Screenshots tied to specific test runs
+- More false postiive failed CI runs
 
 ### Webshot Archive Advantages
 
@@ -90,7 +92,6 @@ Webshot Archive provides comprehensive historical tracking:
 - **Timeline View**: See how your UI has evolved over time
 - **Environment Tracking**: Compare screenshots across staging, production, and development
 - **Change Patterns**: Identify when and why visual changes occur
-- **Rollback Capability**: Easily revert to previous screenshot versions
 
 ## Advanced Features: Basic vs Enterprise
 
@@ -143,9 +144,8 @@ You have two problematic options:
 
 **Option 1: Developer-Controlled (Unreliable)**
 
-```javascript
-// Developers must remember to run this locally
-await expect(page).toHaveScreenshot('my-component.png');
+```bash
+npx playwright test --update-snapshots
 ```
 
 - Developers must manually run tests and commit screenshots

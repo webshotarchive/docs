@@ -44,9 +44,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           screenshotsFolder: dist/playwright
-          clientId: ${{ secrets.WA_CLIENT_ID }}
-          clientSecret: ${{ secrets.WA_CLIENT_SECRET }}
-          projectId: ${{secrets.WA_PROJECT_ID}}
+          clientId: ${{ secrets.WSA_CLIENT_ID }}
+          clientSecret: ${{ secrets.WSA_CLIENT_SECRET }}
+          projectId: ${{secrets.WSA_PROJECT_ID}}
 
       - name: Check if screenshots failed
         if: steps.screenshots.outcome == 'failure'

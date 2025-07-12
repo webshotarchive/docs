@@ -57,8 +57,8 @@ You need to create API credentials for GitHub Actions to upload screenshots.
 1. Go to your GitHub repository
 2. Navigate to **Settings** → **Secrets and variables** → **Actions**
 3. Add these secrets:
-   - `WEBSHOT_ARCHIVE_CLIENT_ID` = Your Client ID
-   - `WEBSHOT_ARCHIVE_CLIENT_SECRET` = Your Client Secret
+   - `WSA_CLIENT_ID` = Your Client ID
+   - `WSA_CLIENT_SECRET` = Your Client Secret
    - `WEBSHOT_ARCHIVE_PROJECT_ID` = Your Project ID
 
 ## Step 4: Set Up Screenshot Capture
@@ -195,9 +195,9 @@ jobs:
         uses: webshotarchive/github-action@v1.1.1
         with:
           screenshotsFolder: cypress/screenshots
-          clientId: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_ID }}
-          clientSecret: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_SECRET }}
-          projectId: ${{ secrets.WEBSHOT_ARCHIVE_PROJECT_ID }}
+          clientId: ${{ secrets.WSA_CLIENT_ID }}
+          clientSecret: ${{ secrets.WSA_CLIENT_SECRET }}
+          projectId: ${{ secrets.WSA_PROJECT_ID }}
 ```
 
 ## Step 7: Test Your Setup

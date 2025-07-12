@@ -26,9 +26,9 @@ Before using the GitHub Action, make sure you have:
   uses: webshotarchive/github-action@v1.1.1
   with:
     screenshotsFolder: cypress/screenshots
-    clientId: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_ID }}
-    clientSecret: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_SECRET }}
-    projectId: ${{ secrets.WEBSHOT_ARCHIVE_PROJECT_ID }}
+    clientId: ${{ secrets.WSA_CLIENT_ID }}
+    clientSecret: ${{ secrets.WSA_CLIENT_SECRET }}
+    projectId: ${{ secrets.WSA_PROJECT_ID }}
 ```
 
 ### Action Parameters
@@ -105,7 +105,7 @@ The action automatically generates tags based on:
   uses: webshotarchive/github-action@v1.1.1
   with:
     screenshotsFolder: cypress/screenshots
-    clientId: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_ID }}
+    clientId: ${{ secrets.WSA_CLIENT_ID }}
     clientSecret: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_SECRET }}
     projectId: ${{ secrets.WEBSHOT_ARCHIVE_PROJECT_ID }}
 ```
@@ -117,7 +117,7 @@ The action automatically generates tags based on:
   uses: webshotarchive/github-action@v1.1.1
   with:
     screenshotsFolder: test-results
-    clientId: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_ID }}
+    clientId: ${{ secrets.WSA_CLIENT_ID }}
     clientSecret: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_SECRET }}
     projectId: ${{ secrets.WEBSHOT_ARCHIVE_PROJECT_ID }}
     failedTestPattern: 'error'
@@ -132,7 +132,7 @@ The action automatically generates tags based on:
   uses: webshotarchive/github-action@v1.1.1
   with:
     screenshotsFolder: cypress/screenshots
-    clientId: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_ID }}
+    clientId: ${{ secrets.WSA_CLIENT_ID }}
     clientSecret: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_SECRET }}
     projectId: ${{ secrets.WEBSHOT_ARCHIVE_PROJECT_ID }}
     tags: 'staging,automated'
@@ -180,9 +180,9 @@ Enable debug logging for troubleshooting:
     ACTIONS_STEP_DEBUG: true # Enable detailed logging
   with:
     screenshotsFolder: cypress/screenshots
-    clientId: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_ID }}
-    clientSecret: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_SECRET }}
-    projectId: ${{ secrets.WEBSHOT_ARCHIVE_PROJECT_ID }}
+    clientId: ${{ secrets.WSA_CLIENT_ID }}
+    clientSecret: ${{ secrets.WSA_CLIENT_SECRET }}
+    projectId: ${{ secrets.WSA_PROJECT_ID }}
 ```
 
 ```json

@@ -62,6 +62,20 @@ const config: Config = {
   customFields: {
     eagerLoadImg: process.env.EAGER,
   },
+  scripts: [
+    {
+      src: 'https://www.googletagmanager.com/gtag/js?id=G-RTCZ0X2GDZ',
+      async: true,
+    },
+    {
+      innerHTML: `
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-RTCZ0X2GDZ');
+      `,
+    },
+  ],
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',

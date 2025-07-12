@@ -72,9 +72,9 @@ jobs:
         uses: webshotarchive/github-action@latest
         with:
           screenshotsFolder: dist/cypress
-          clientId: ${{ secrets.CLIENT_ID }}
-          clientSecret: ${{ secrets.CLIENT_SECRET }}
-          projectId: ${{secrets.PROJECT_ID}}
+          clientId: ${{ secrets.WSA_CLIENT_ID }}
+          clientSecret: ${{ secrets.WSA_CLIENT_SECRET }}
+          projectId: ${{secrets.WSA_PROJECT_ID}}
 
       - name: Check if screenshots failed
         if: steps.screenshots.outcome == 'failure'
@@ -136,9 +136,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           screenshotsFolder: dist/cypress
-          clientId: ${{ secrets.CLIENT_ID }}
-          clientSecret: ${{ secrets.CLIENT_SECRET }}
-          projectId: ${{secrets.PROJECT_ID}}
+          clientId: ${{ secrets.WSA_CLIENT_ID }}
+          clientSecret: ${{ secrets.WSA_CLIENT_SECRET }}
+          projectId: ${{secrets.WSA_PROJECT_ID}}
 
       - name: Check if screenshots failed
         if: steps.screenshots.outcome == 'failure'

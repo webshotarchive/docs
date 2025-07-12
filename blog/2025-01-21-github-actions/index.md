@@ -75,7 +75,7 @@ jobs:
         uses: webshotarchive/github-action@v1.1.1
         with:
           screenshotsFolder: .next/cypress
-          clientId: ${{ vars.WEBSHOT_CLIENT_ID }}
+          clientId: ${{ vars.WSA_CLIENT_ID }}
           clientSecret: ${{ secrets.WEBSHOT_CLIENT_SECRET }}
           projectId: ${{vars.WEBSHOT_PROJECT_ID}}
 ```

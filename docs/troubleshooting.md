@@ -22,8 +22,8 @@ Common issues and their solutions when using Webshot Archive.
 
    ```yaml
    # Make sure these match exactly in your workflow
-   clientId: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_ID }}
-   clientSecret: ${{ secrets.WEBSHOT_ARCHIVE_CLIENT_SECRET }}
+   clientId: ${{ secrets.WSA_CLIENT_ID }}
+   clientSecret: ${{ secrets.WSA_CLIENT_SECRET }}
    ```
 
 2. **Verify secret values:**
