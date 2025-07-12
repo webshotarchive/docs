@@ -34,8 +34,8 @@ export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
+      title="Webshot Archive Documentation - Screenshot Comparison for GitHub PRs"
+      description="Comprehensive documentation for Webshot Archive - the screenshot comparison tool that integrates with GitHub Actions to capture and compare visual changes in your PRs and commits. View diffs over time and share clips with your team."
     >
       <HomepageHeader />
       <main>
