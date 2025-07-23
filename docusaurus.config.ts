@@ -56,21 +56,16 @@ const config: Config = {
         theme: {
           customCss: './src/css/custom.css',
         },
+        googleTagManager: {
+          containerId: 'GTM-WRC7X7TF',
+        },
       } satisfies Preset.Options,
     ],
   ],
   customFields: {
     eagerLoadImg: process.env.EAGER,
   },
-  scripts: [
-    {
-      src: 'https://www.googletagmanager.com/gtag/js?id=G-RTCZ0X2GDZ',
-      async: true,
-    },
-    {
-      src: '/js/gtag.js',
-    },
-  ],
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/docusaurus-social-card.jpg',
