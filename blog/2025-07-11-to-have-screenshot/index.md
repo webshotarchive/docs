@@ -5,9 +5,11 @@ authors: [toshimoto821]
 tags: [developer, webshot-archive-ui, testing, visual-regression]
 ---
 
-When it comes to visual regression testing, [Playwright's `.toHaveScreenshot()`](https://playwright.dev/docs/test-snapshots) method has become a popular choice for developers. In addition to PR image diffs like [this](https://github.com/toshimoto821/toshi-moto/pull/293), with
-Webshot Archive you dont have to store the screenshots in your repo or deal with failing
-tests for insignificant changes.
+When it comes to visual regression testing, [Playwright's `.toHaveScreenshot()`](https://playwright.dev/docs/test-snapshots) method has become a popular choice for developers.
+However, Webshot Archive is a great alternative solution for screenshot comparison.
+In addition to PR image diffs like [this](https://github.com/toshimoto821/toshi-moto/pull/293),
+with Webshot Archive you dont have to store the screenshots in your repo or
+deal with failing tests for insignificant changes.
 
 ## The Core Difference: Centralized vs Distributed
 
