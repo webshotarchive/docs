@@ -52,14 +52,10 @@ You can also view the complete visual history in the Webshot Archive dashboard:
 
 Ready to get started? Follow these steps:
 
-1. **[Sign up](https://www.webshotarchive.com/account)** for a free account
+1. **[Sign up](https://www.webshotarchive.com/account)** for an account account
 2. **[Create a project](https://www.webshotarchive.com/projects)** to organize your screenshots
 3. **[Set up authentication](./tutorial-basics/create-client-credentials)** for GitHub Actions
 4. **[Configure your workflow](./recipes/push-pr-action)** to capture and upload screenshots
-
-:::tip Free Tier Available
-Start with our freemium plan - perfect for testing and small projects. Upgrade when you need more features or higher limits.
-:::
 
 ## What You'll Learn
 
