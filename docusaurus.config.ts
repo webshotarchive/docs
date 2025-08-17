@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Webshot Archive Docs',
-  tagline: 'A screenshot comparision archive for your Github PRs and commits.',
+  tagline: 'See Every Change - Past, Present, and before IT Ships',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here

@@ -13,8 +13,9 @@ This guide will walk you through:
 
 1. Creating a Webshot Archive account and project
 2. Setting up authentication credentials
-3. Configuring a basic GitHub Actions workflow
-4. Running your first visual regression test
+3. Installing the required GitHub App
+4. Configuring a basic GitHub Actions workflow
+5. Running your first visual regression test
 
 ## Step 1: Create Your Account
 
@@ -22,8 +23,8 @@ This guide will walk you through:
 2. Click **"Sign Up"** and create your account
 3. Verify your email address
 
-:::tip Free Account
-Start with our free tier - you can always upgrade later as your needs grow.
+:::tip GUEST ACCOUNT
+You may request access to a GUEST account with limited access to evaluate Webshot Archive
 :::
 
 ## Step 2: Create a Project
@@ -65,7 +66,33 @@ You need to create API credentials for GitHub Actions to upload screenshots.
 
 Choose your testing framework:
 
-### Option A: Cypress (Recommended)
+### Option A: Playwright (Recommended)
+
+```bash
+# Install Playwright
+pnpm add -D @playwright/test
+
+# Initialize Playwright
+npx playwright install
+```
+
+Create a test in `tests/visual.spec.js`:
+
+```javascript
+const { test, expect } = require('@playwright/test');
+
+test('visual regression tests', async ({ page }) => {
+  await page.goto('http://localhost:3000');
+  await page.waitForTimeout(1000);
+  await page.screenshot({ path: 'screenshots/homepage.png' });
+
+  await page.goto('http://localhost:3000/about');
+  await page.waitForTimeout(1000);
+  await page.screenshot({ path: 'screenshots/about-page.png' });
+});
+```
+
+### Option B: Cypress
 
 If you don't have Cypress set up:
 
@@ -95,35 +122,9 @@ describe('Visual Regression Tests', () => {
 });
 ```
 
-### Option B: Playwright
+## Step 5: Install the GitHub App (Required)
 
-```bash
-# Install Playwright
-pnpm add -D @playwright/test
-
-# Initialize Playwright
-npx playwright install
-```
-
-Create a test in `tests/visual.spec.js`:
-
-```javascript
-const { test, expect } = require('@playwright/test');
-
-test('visual regression tests', async ({ page }) => {
-  await page.goto('http://localhost:3000');
-  await page.waitForTimeout(1000);
-  await page.screenshot({ path: 'screenshots/homepage.png' });
-
-  await page.goto('http://localhost:3000/about');
-  await page.waitForTimeout(1000);
-  await page.screenshot({ path: 'screenshots/about-page.png' });
-});
-```
-
-## Step 5: Install the GitHub App
-
-**⚠️ Critical Step**: To enable the GitHub Action to comment on pull requests, you must install the Webshot Archive GitHub App.
+**⚠️ Essential Requirement**: You must install the Webshot Archive GitHub App for Webshot Archive to function properly.
 
 1. Go to [Webshot Archive GitHub App](https://github.com/apps/webshot-archive-github-action/installations/new)
 2. Click **"Install"**
@@ -136,8 +137,8 @@ This gives Webshot Archive the necessary permissions to:
 - React access to content (allows the app to view branches in the webshot arch)
 - Read access to metadata
 
-:::tip Required for PR Comments
-Without installing the GitHub App, the action will still upload screenshots but won't be able to comment on pull requests with visual diffs or view commits / branches in the Webshot Archive UI.
+:::warning GitHub App Required
+The GitHub App installation is now mandatory for Webshot Archive to work. Without it, the action will fail and screenshots will not be processed or uploaded.
 :::
 
 ## Step 6: Create GitHub Actions Workflow
@@ -156,10 +157,6 @@ on:
     branches: [main]
   push:
     branches: [main]
-
-permissions:
-  contents: read
-  pull-requests: write
 
 jobs:
   visual-tests:
@@ -188,13 +185,13 @@ jobs:
         run: npx wait-on http://localhost:3000
 
       - name: Run visual tests
-        run: pnpm cypress:run
+        run: pnpm playwright test
         continue-on-error: true
 
       - name: Upload to Webshot Archive
         uses: webshotarchive/github-action@v1.1.1
         with:
-          screenshotsFolder: cypress/screenshots
+          screenshotsFolder: playwright/screenshots # path may differ, configured in playwright.config.ts
           clientId: ${{ secrets.WSA_CLIENT_ID }}
           clientSecret: ${{ secrets.WSA_CLIENT_SECRET }}
           projectId: ${{ secrets.WSA_PROJECT_ID }}
@@ -211,15 +208,16 @@ jobs:
 2. **Run your visual tests:**
 
    ```bash
-   # For Cypress
-   pnpm cypress run
 
    # For Playwright
    pnpm playwright test
+
+   # For Cypress
+   pnpm cypress run
+
    ```
 
 3. **Create a test pull request:**
-
    - Make a small change to your app
    - Commit and push to a new branch
    - Create a pull request
@@ -258,6 +256,11 @@ jobs:
 
 - Verify your GitHub secrets are correctly named
 - Check that the Client ID and Secret are copied exactly
+
+**"Action fails or screenshots not uploaded"**
+
+- Ensure the Webshot Archive GitHub App is installed on your repository
+- Check that the app has proper permissions for your repository
 
 **"No diffs shown"**
 
