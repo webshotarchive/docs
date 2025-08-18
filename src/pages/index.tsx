@@ -22,7 +22,7 @@ function HomepageHeader() {
             target="_blank"
             to="https://www.webshotarchive.com"
           >
-            www.webshotarchive.com
+            webshotarchive.com
           </Link>
         </div>
       </div>

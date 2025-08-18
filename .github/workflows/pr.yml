@@ -3,12 +3,6 @@ name: Pull Request Screenshots
 on:
   pull_request:
 
-permissions:
-  actions: read
-  contents: read
-  issues: write
-  pull-requests: write
-
 jobs:
   main:
     runs-on: ubuntu-latest
@@ -38,7 +32,7 @@ jobs:
 
       - name: WebshotArchive Action
         if: github.actor != 'dependabot[bot]'
-        uses: webshotarchive/github-action@v1.1.1
+        uses: webshotarchive/github-action@latest
         with:
           screenshotsFolder: dist/playwright
           clientId: ${{ secrets.WA_CLIENT_ID }}
