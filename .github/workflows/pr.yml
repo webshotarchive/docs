@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies using pnpm
+      - name: Install dependencies using npm
         run: npm ci
 
       - name: Install Playwright Browsers
