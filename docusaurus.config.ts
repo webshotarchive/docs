@@ -74,6 +74,8 @@ const config: Config = {
       logo: {
         alt: 'Webshot Archive Logo',
         src: 'img/logo.svg?v=1',
+        href: 'https://www.webshotarchive.com',
+        target: '_blank',
       },
       items: [
         {
@@ -90,6 +92,11 @@ const config: Config = {
         },
         { to: '/docs/api', label: 'API', position: 'left' },
         { to: '/blog', label: 'Blog', position: 'left' },
+        {
+          href: 'https://www.webshotarchive.com',
+          label: 'Website',
+          position: 'right',
+        },
         {
           href: 'https://github.com/webshotarchive/docs',
           label: 'GitHub',
