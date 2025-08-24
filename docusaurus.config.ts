@@ -92,7 +92,7 @@ const config: Config = {
         { to: '/blog', label: 'Blog', position: 'left' },
         {
           href: 'https://www.webshotarchive.com',
-          label: 'Website',
+          label: 'Webshot Archive',
           position: 'right',
         },
         {
