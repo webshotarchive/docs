@@ -58,6 +58,8 @@ test('uploading tags-[tutorial]', async ({ page }, testInfo) => {
 
   await page.evaluate(() => window.scrollTo(0, 0));
 
+  await page.waitForLoadState('networkidle');
+
   const screenshotPath = testInfo.outputPath('uploading.png');
   await page.screenshot({ path: screenshotPath, fullPage: true });
 });
