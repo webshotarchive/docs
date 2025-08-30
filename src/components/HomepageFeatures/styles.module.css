@@ -7,6 +7,7 @@
 
 .featureSvg {
   width: 400px;
+  height: auto;
   border-radius: 10px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.4);
   border: 1px solid #e0e0e0;
@@ -20,7 +21,22 @@
 
 @media (max-width: 1000px) {
   .featureSvg {
-    width: 600px;
+    width: 100%;
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 768px) {
+  .featureSvg {
+    width: 100%;
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 480px) {
+  .featureSvg {
+    width: 100%;
+    max-width: 280px;
   }
 }
 
