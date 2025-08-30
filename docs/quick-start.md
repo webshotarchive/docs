@@ -270,9 +270,9 @@ jobs:
 ### Getting Help
 
 - Check the [troubleshooting guide](./troubleshooting)
-- Join our [Discord community](https://discord.gg/a9qkpVxPnF)
+- Join our [Discord community](https://discord.gg/qx5fkzBV)
 - Open an issue on [GitHub](https://github.com/webshotarchive/docs)
 
 ---
 
-**Need help?** [Join our Discord](https://discord.gg/a9qkpVxPnF) or [check the troubleshooting guide](./troubleshooting).
+**Need help?** [Join our Discord](https://discord.gg/qx5fkzBVF) or [check the troubleshooting guide](./troubleshooting).

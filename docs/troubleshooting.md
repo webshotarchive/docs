@@ -27,13 +27,11 @@ Common issues and their solutions when using Webshot Archive.
    ```
 
 2. **Verify secret values:**
-
    - Go to your GitHub repository → Settings → Secrets and variables → Actions
    - Check that the secrets exist and have the correct values
    - Ensure no extra spaces or characters were copied
 
 3. **Regenerate credentials:**
-
    - Go to [Account Settings](https://www.webshotarchive.com/account/team)
    - Find your service account
    - Click "View / Add Credentials" → "Create Credentials"
@@ -48,7 +46,6 @@ Common issues and their solutions when using Webshot Archive.
 **Solutions:**
 
 1. **Verify project ownership:**
-
    - Ensure you're using the correct project ID
    - Check that your service account has access to the project
 
@@ -83,7 +80,6 @@ Common issues and their solutions when using Webshot Archive.
    ```
 
 3. **Common paths by framework:**
-
    - **Cypress**: `cypress/screenshots/`
    - **Playwright**: `test-results/` or custom path
    - **Selenium**: `screenshots/`
@@ -136,7 +132,6 @@ Common issues and their solutions when using Webshot Archive.
 **Solutions:**
 
 1. **First run behavior:**
-
    - The first screenshot has nothing to compare against
    - This is normal - make a visual change and create another PR
 
@@ -194,7 +189,6 @@ Common issues and their solutions when using Webshot Archive.
    ```
 
 2. **Verify file path:**
-
    - Ensure the workflow file is in `.github/workflows/`
    - Check the file extension is `.yml` or `.yaml`
 
@@ -295,12 +289,10 @@ Common issues and their solutions when using Webshot Archive.
 **Solutions:**
 
 1. **Check usage limits:**
-
    - Visit your [account dashboard](https://www.webshotarchive.com/account)
    - Review your current usage vs. limits
 
 2. **Optimize upload frequency:**
-
    - Only upload on significant changes
    - Use conditional uploads based on file changes
 
@@ -324,7 +316,6 @@ Common issues and their solutions when using Webshot Archive.
    ```
 
 2. **Check network connectivity:**
-
    - Verify GitHub Actions can reach external APIs
    - Check for firewall or proxy issues
 
@@ -367,7 +358,7 @@ If you're still having issues:
 
 1. **Check the logs:** Enable debug mode and review the output
 2. **Search existing issues:** [GitHub Issues](https://github.com/webshotarchive/webshotarchive/issues)
-3. **Join Discord:** [Community Discord](https://discord.gg/a9qkpVxPnF)
+3. **Join Discord:** [Community Discord](https://discord.gg/qx5fkzBV)
 4. **Contact support:** Email support@webshotarchive.com
 
 ### When reporting issues

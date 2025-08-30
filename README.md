@@ -170,7 +170,7 @@ The site uses Google Analytics (if configured) to track usage and improve docume
 ## 🤝 Support
 
 - **Documentation Issues**: Open an issue in this repository
-- **Community**: Join our [Discord community](https://discord.gg/a9qkpVxPnF)
+- **Community**: Join our [Discord community](https://discord.gg/qx5fkzBV)
 
 ## 📄 License
 

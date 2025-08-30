@@ -81,6 +81,6 @@ Before you begin, make sure you have:
 
 - **Documentation** - This site contains everything you need
 - **GitHub Issues** - [Report](https://github.com/webshotarchive/docs) bugs or request features
-- **Discord** - Join [our community](https://discord.gg/a9qkpVxPnF) for help and discussions
+- **Discord** - Join [our community](https://discord.gg/qx5fkzBV) for help and discussions
 
 ---
