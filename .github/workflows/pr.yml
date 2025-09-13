@@ -39,6 +39,26 @@ jobs:
           clientSecret: ${{ secrets.WA_CLIENT_SECRET }}
           projectId: ${{secrets.WA_PROJECT_ID}}
 
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-screenshots
+          path: ./dist/playwright/
+          retention-days: 30
+
+      - name: Upload HTML report to Azure
+        shell: bash
+        if: steps.screenshots.outcome == 'failure'
+        run: |
+          REPORT_DIR='run-${{ github.run_id }}-${{ github.run_attempt }}'
+          azcopy cp --recursive "./playwright-report/*" "https://webshotarchiveplaywright.blob.core.windows.net/\$web/$REPORT_DIR"
+          echo "::notice title=HTML report url::https://webshotarchiveplaywright.z13.web.core.windows.net/$REPORT_DIR/index.html"
+        env:
+          AZCOPY_AUTO_LOGIN_TYPE: SPN
+          AZCOPY_SPA_APPLICATION_ID: '${{ secrets.AZCOPY_SPA_APPLICATION_ID }}'
+          AZCOPY_SPA_CLIENT_SECRET: '${{ secrets.AZCOPY_SPA_CLIENT_SECRET }}'
+          AZCOPY_TENANT_ID: '${{ secrets.AZCOPY_TENANT_ID }}'
+
       - name: Check if screenshots failed
         if: steps.screenshots.outcome == 'failure'
         run: exit 1
