@@ -220,29 +220,6 @@ export default defineConfig({
 });
 ```
 
-**Setup Dependencies for Authentication:**
-
-```ts title="playwright.config.ts"
-export default defineConfig({
-  projects: [
-    {
-      name: 'setup',
-      testMatch: '**/*.setup.ts',
-    },
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-      dependencies: ['setup'],
-    },
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-      dependencies: ['setup'],
-    },
-  ],
-});
-```
-
 **Run specific projects:**
 
 ```bash
