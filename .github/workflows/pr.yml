@@ -42,13 +42,13 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: playwright-report
+          name: playwright-screenshots
           path: ./dist/playwright/
           retention-days: 30
 
       - name: Upload HTML report to Azure
         shell: bash
-        # if: steps.screenshots.outcome == 'failure'
+        if: steps.screenshots.outcome == 'failure'
         run: |
           REPORT_DIR='run-${{ github.run_id }}-${{ github.run_attempt }}'
           azcopy cp --recursive "./playwright-report/*" "https://webshotarchiveplaywright.blob.core.windows.net/\$web/$REPORT_DIR"
