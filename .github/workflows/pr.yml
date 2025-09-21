@@ -35,9 +35,9 @@ jobs:
         uses: webshotarchive/github-action@latest
         with:
           screenshotsFolder: dist/playwright
-          clientId: ${{ secrets.WA_CLIENT_ID }}
-          clientSecret: ${{ secrets.WA_CLIENT_SECRET }}
-          projectId: ${{secrets.WA_PROJECT_ID}}
+          clientId: ${{ secrets.WSA_CLIENT_ID }}
+          clientSecret: ${{ secrets.WSA_CLIENT_SECRET }}
+          projectId: 68d0035806762c8b1918d6bf
 
       - uses: actions/upload-artifact@v4
         if: always()
