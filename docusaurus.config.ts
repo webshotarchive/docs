@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Webshot Archive Docs',
-  tagline: 'See Every Change - Past, Present, and before IT Ships',
+  tagline: 'Stop Shipping Broken UIs to Production',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
